@@ -11,7 +11,7 @@ const AllQuerys = () => {
   );
 
   return (
-    <div className="max-w-6xl mx-auto px-4 py-8">
+    <div className="max-w-7xl mx-auto px-4 py-8">
       <h2 className="text-3xl font-semibold text-center text-green-700 mb-8">
         All Product Queries
       </h2>

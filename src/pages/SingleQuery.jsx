@@ -2,7 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router'; // ✅ use correct package
 
 const SingleQuery = ({ singleQuery }) => {
-  const { _id, productName, productImage, queryTitle, recommendationCount,date } = singleQuery;
+  const { _id, productName, productImage, queryTitle, recommendationCount,date,productBrand } = singleQuery;
 
   const navigate = useNavigate();
 
@@ -19,6 +19,7 @@ const SingleQuery = ({ singleQuery }) => {
       />
 
       <h3 className="text-lg font-semibold text-green-700 mb-1">{productName}</h3>
+       <p className="text-sm text-gray-500 mb-1">Brand: {productBrand}</p>
       <p className="text-gray-700 mb-2 text-sm line-clamp-2">{queryTitle}</p>
       <p className="text-xs text-gray-400 mb-3">Date: {new Date(date).toLocaleString()}</p>
 

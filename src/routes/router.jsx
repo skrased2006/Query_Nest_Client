@@ -10,9 +10,9 @@ import Register from "../pages/Register";
 import AddQuery from "../pages/AddQuery";
 import AllQuerys from "../pages/AllQuerys";
 import QueryDetails from "../pages/QueryDetails";
-import MyQuery from "../pages/MyQuery";
+import MyQuery from "../pages/MyQuery/MyQuery";
 
-import MyUpdateQuery from "../pages/MyUpadateQuery";
+import MyUpdateQuery from "../pages/MyQuery/MyUpadateQuery";
 
 export const router = createBrowserRouter([
   {
