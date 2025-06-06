@@ -55,8 +55,8 @@ const MySingleQuery = ({ mySingleQuery, onDelete }) => {
         className="w-full h-40 object-cover mb-4 rounded"
       />
       <h2 className="text-xl font-bold text-green-700 mb-1">{productName}</h2>
-      <p className="text-sm text-gray-500 mb-1">Brand: {productBrand}</p>
-      <p className="text-sm text-gray-700 mb-1">Query: {queryTitle}</p>
+      <p className="text-sm text-gray-500 mb-1"><strong>Brand: </strong> {productBrand}</p>
+      <p className="text-sm text-gray-700 mb-1"><strong>Query:</strong> {queryTitle}</p>
       <p className="text-xs text-gray-400 mb-3">Date: {new Date(date).toLocaleString()}</p>
 
       <div className="flex gap-2 mt-auto">

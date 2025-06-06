@@ -2,6 +2,8 @@ import React, { useContext } from 'react';
 import { useLoaderData, useParams } from 'react-router';
 import { AuthContext } from '../context/AuthContext';
 import axios from 'axios';
+import AllRecommendation from './AllRecomondation/AllRecommendation';
+import ProductRecommendations from './AllRecomondation/AllRecommendation';
 
 const QueryDetails = () => {
   const { id } = useParams();
@@ -20,18 +22,18 @@ const QueryDetails = () => {
     
 
 
-    const recommendation={
-        ...formData,
-         queryId: singleQuery._id,
-        queryTitle: singleQuery.queryTitle,
-        userEmail: singleQuery.userEmail,
-       userName: singleQuery.userName,
-    timestamp: new Date().toISOString(),
-
-    recommenderEmail: user.email,
-    recommenderName: user.name,
-
- }
+   const recommendation = {
+  ...formData,
+  queryId: singleQuery._id,
+  recommendedProductId: singleQuery._id, // ✅ এইটা ঠিক আছে
+  queryTitle: singleQuery.queryTitle,
+  userEmail: singleQuery.userEmail,
+  userName: singleQuery.userName,
+  timestamp: new Date().toISOString(),
+  recommenderEmail: user.email,
+  recommenderName: user.name,
+  recommenderPhoto: user.userPhoto, 
+};
 
    axios.post('http://localhost:3000/recommendation',recommendation)
    .then((res)=>{
@@ -67,7 +69,7 @@ const QueryDetails = () => {
       {/* User Info */}
       <section className="flex items-center gap-4 mb-6">
         <img
-          src={singleQuery.userPhoto}
+          src={singleQuery?.userPhoto}
           alt={singleQuery.userName}
           className="w-12 h-12 rounded-full object-cover border border-gray-300"
         />
@@ -122,6 +124,10 @@ const QueryDetails = () => {
         </form>
       </section>
 
+      <div>
+        <ProductRecommendations productId={singleQuery._id}></ProductRecommendations>
+      </div>
+
      
     </div>
   );
@@ -131,33 +137,4 @@ export default QueryDetails;
 
 
 
- {/* All Recommendations */}
-      {/* <section>
-        <h3 className="text-2xl font-semibold mb-4">All Recommendations</h3>
-        {recommendations.length === 0 && <p>No recommendations yet.</p>}
-        {recommendations.map((rec) => (
-          <div
-            key={rec._id}
-            className="border border-gray-200 rounded p-4 mb-4 shadow-sm"
-          >
-            <div className="flex items-center gap-3 mb-2">
-              <img
-                src={rec.recommendedProductImage}
-                alt={rec.recommendedProductName}
-                className="w-14 h-14 object-contain rounded"
-              />
-              <div>
-                <h4 className="font-semibold">{rec.recommendationTitle}</h4>
-                <p className="text-sm text-gray-600">{rec.recommendedProductName}</p>
-                <p className="text-xs text-gray-400">
-                  Recommended by: {rec.recommenderName} ({rec.recommenderEmail})
-                </p>
-                <p className="text-xs text-gray-400">
-                  On: {new Date(rec.timestamp).toLocaleString()}
-                </p>
-              </div>
-            </div>
-            <p>{rec.recommendationReason}</p>
-          </div>
-        ))}
-      </section> */}
+ 

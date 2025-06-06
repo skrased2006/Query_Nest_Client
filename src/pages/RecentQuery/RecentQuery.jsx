@@ -18,7 +18,7 @@ const RecentQuery = () => {
 
 
   return (
-    <div className="mt-10 max-w-7xl mx-auto px-4">
+    <div className="mt-10 max-w-7xl mx-auto ">
       <h1 className="text-2xl font-bold  text-indigo-600 mb-6 text-center">
         🔍 Recent Queries
       </h1>
