@@ -33,7 +33,16 @@ const Register = () => {
   const handleGoogleLogin=()=>{
     signItWithGoogle()
      .then((res) => {
-        console.log('Google User:', res.user);
+         Swal.fire({
+          title: 'Google Sign-in Success!',
+          text: `Welcome ${res.user?.displayName || 'User'}!`,
+          imageUrl: 'https://cdn.shopify.com/s/files/1/0275/6457/2777/articles/050eef32fe16075ac9a3310a1d310593.jpg?v=1652231425',
+          imageWidth: 400,
+          imageHeight: 200,
+          imageAlt: 'Google Login Success',
+          confirmButtonColor: '#6366F1',
+          confirmButtonText: 'Nice!',
+        });
       })
       .catch((err) => {
         console.error(err);

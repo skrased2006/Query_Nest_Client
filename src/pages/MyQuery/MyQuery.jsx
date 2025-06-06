@@ -33,7 +33,7 @@ const MyQuery = () => {
 
 
     return (
-        <div className='max-w-6xl mx-auto px-4 py-8'>
+        <div className='max-w-7xl mx-auto py-8'>
               <h2 className="text-3xl font-bold text-green-700 mb-4 text-center">My Queries</h2>
         <p className="text-gray-600 mb-4 text-center">Here you can view, update, or delete your submitted queries.</p>
      

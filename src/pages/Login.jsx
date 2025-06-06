@@ -35,8 +35,15 @@ const Login = () => {
   const handleGoogleLogin=()=>{
     signItWithGoogle()
     .then(res=>{
-      const user=res.user;
-      console.log(user);
+      Swal.fire({
+          title: 'Google Sign-in Success!',
+          imageUrl: 'https://i.ibb.co/4wC3Kvbc/blog-20image-2.png',
+          imageWidth: 400,
+          imageHeight: 200,
+          imageAlt: 'Google Login Success',
+          confirmButtonColor: '#6366F1',
+          confirmButtonText: 'Nice!',
+        });
     })
     
   }

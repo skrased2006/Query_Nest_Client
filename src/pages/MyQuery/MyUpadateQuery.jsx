@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React from 'react';
 import { useLoaderData } from 'react-router';
+import Swal from 'sweetalert2';
 
 const MyUpdateQuery = () => {
   const query = useLoaderData();
@@ -20,7 +21,18 @@ const MyUpdateQuery = () => {
     const updateData=Object.fromEntries(fromData.entries())
     axios.patch(`http://localhost:3000/queries/id/${_id}`,updateData)
     .then((res) =>{
-        console.log(res.data);
+       
+       Swal.fire({
+           position: "top-end",
+           icon: "success",
+             title: 'Your query was update successfully!',
+          showConfirmButton: false,
+          timer: 1500
+       });
+
+
+
+      
     })
 
    

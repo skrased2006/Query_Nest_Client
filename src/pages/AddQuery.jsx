@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { AuthContext } from '../context/AuthContext';
 import axios from 'axios';
+import Swal from 'sweetalert2';
 
 const AddQuery = () => {
     const {user}=useContext(AuthContext);
@@ -23,6 +24,15 @@ const AddQuery = () => {
     };
     axios.post('http://localhost:3000/queries',newQuery)
     .then(res=>{
+      if(res.data.insertedId){
+        Swal.fire({
+     position: "top-end",
+     icon: "success",
+       title: 'Your query was added successfully!',
+    showConfirmButton: false,
+    timer: 1500
+ });
+      }
         console.log(res.data);
     })
 
