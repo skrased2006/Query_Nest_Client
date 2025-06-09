@@ -1,12 +1,17 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { Link } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
 import Swal from "sweetalert2";
 
 const Register = () => {
   const {createUser,signItWithGoogle}=useContext(AuthContext);
+
+  const location=useLocation()
+  const navigate=useNavigate();
+  const from=location.state?.from?.pathname||'/';
+
 
   const handleRegister=(e)=>{
     e.preventDefault();
@@ -22,7 +27,7 @@ const Register = () => {
   showConfirmButton: false,
   timer: 1500
 });
-    console.log(res);
+    navigate(form)
    })
 
 
@@ -35,7 +40,6 @@ const Register = () => {
      .then((res) => {
          Swal.fire({
           title: 'Google Sign-in Success!',
-          text: `Welcome ${res.user?.displayName || 'User'}!`,
           imageUrl: 'https://cdn.shopify.com/s/files/1/0275/6457/2777/articles/050eef32fe16075ac9a3310a1d310593.jpg?v=1652231425',
           imageWidth: 400,
           imageHeight: 200,
@@ -43,6 +47,7 @@ const Register = () => {
           confirmButtonColor: '#6366F1',
           confirmButtonText: 'Nice!',
         });
+        navigate(from)
       })
       .catch((err) => {
         console.error(err);

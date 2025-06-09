@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import Slider from './Slider';
 import RecentQuery from './RecentQuery/RecentQuery';
 import Testimonials from './testimonials';
+import ExtraSection from './ExtraSection/ExtraSection';
 
 const sectionVariants = {
   hidden: { opacity: 0, y: 30 },
@@ -27,7 +28,6 @@ const Home = () => {
         viewport={{ once: true, amount: 0.3 }}
         variants={sectionVariants}
         transition={{ delay: 0.2 }}
-        className="mt-12"
       >
         <RecentQuery />
       </motion.div>
@@ -38,9 +38,17 @@ const Home = () => {
         viewport={{ once: true, amount: 0.3 }}
         variants={sectionVariants}
         transition={{ delay: 0.4 }}
-        className="mt-12"
       >
         <Testimonials />
+      </motion.div>
+        <motion.div
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.3 }}
+        variants={sectionVariants}
+        transition={{ delay: 0.4 }}
+      >
+        <ExtraSection/>
       </motion.div>
     </div>
   );

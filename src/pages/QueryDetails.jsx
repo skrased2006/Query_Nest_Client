@@ -9,9 +9,8 @@ const QueryDetails = () => {
   const { id } = useParams();
   const {user}=useContext(AuthContext);
  
-  // singleQueryData থেকে ওই id এর data fetch করছো
   const singleQueryData = useLoaderData();
-  const singleQuery = singleQueryData.find((data) => data._id === id);
+ const singleQuery = singleQueryData;
 
 
   const handleRecommend=(e)=>{
@@ -25,7 +24,7 @@ const QueryDetails = () => {
    const recommendation = {
   ...formData,
   queryId: singleQuery._id,
-  recommendedProductId: singleQuery._id, // ✅ এইটা ঠিক আছে
+  recommendedProductId: singleQuery._id, 
   queryTitle: singleQuery.queryTitle,
   userEmail: singleQuery.userEmail,
   userName: singleQuery.userName,
@@ -51,7 +50,7 @@ const QueryDetails = () => {
       <img
         src={singleQuery.productImage}
         alt={singleQuery.productName}
-        className="w-full h-48 object-contain mb-6 rounded-lg"
+        className="w-full h-58 object-cover mb-6 rounded-lg"
       />
       <h2 className="text-3xl font-bold text-green-700 mb-2">{singleQuery.productName}</h2>
       <p className="text-sm text-gray-500 mb-4">Brand: {singleQuery.productBrand}</p>

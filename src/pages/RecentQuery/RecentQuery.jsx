@@ -18,12 +18,13 @@ const RecentQuery = () => {
 
 
   return (
-    <div className="mt-10 max-w-7xl mx-auto ">
-      <h1 className="text-2xl font-bold  text-indigo-600 mb-6 text-center">
+    <section className="bg-gray-100">
+    <div className=" max-w-7xl mx-auto ">
+      <h1 className="text-2xl font-bold  text-indigo-600 mb-6 text-center pt-9">
         🔍 Recent Queries
       </h1>
 
-      <div className='grid grid-cols-3 gap-4'>
+      <div className='grid grid-cols-3 gap-4 mt-10'>
         {
             recentQueries.map(recentSingleQuery=><RecentSingleQuery 
                 recentSingleQuery={recentSingleQuery}
@@ -33,6 +34,7 @@ const RecentQuery = () => {
       </div>
 
     </div>
+    </section>
   );
 };
 

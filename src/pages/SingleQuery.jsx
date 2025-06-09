@@ -1,6 +1,6 @@
 import React from 'react';
 import { FaRegComment } from 'react-icons/fa';
-import { useNavigate } from 'react-router'; // ✅ use correct package
+import { useNavigate } from 'react-router';
 
 const SingleQuery = ({ singleQuery }) => {
   const { _id, productName, productImage, queryTitle, recommendationCount,date,productBrand } = singleQuery;

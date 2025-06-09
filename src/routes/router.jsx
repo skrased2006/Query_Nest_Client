@@ -1,7 +1,7 @@
 import {
   createBrowserRouter,
   RouterProvider,
-} from "react-router";
+} from "react-router"; // ✅ make sure it's 'react-router-dom'
 import MainLayout from "../layouts/MainLayout";
 import Home from "../pages/Home";
 import ErrorLayout from "../layouts/ErrorLayout";
@@ -11,54 +11,82 @@ import AddQuery from "../pages/AddQuery";
 import AllQuerys from "../pages/AllQuerys";
 import QueryDetails from "../pages/QueryDetails";
 import MyQuery from "../pages/MyQuery/MyQuery";
-
 import MyUpdateQuery from "../pages/MyQuery/MyUpadateQuery";
+import PrivetRoute from "./PrivetRoute";
+import MyRecomondation from "../pages/MyRecomondation/MyRecomondation";
+import RecomondationForMe from "../pages/RecomondationForMe/RecomondationForMe";
 
 export const router = createBrowserRouter([
   {
     path: "/",
-  Component:MainLayout,
-  errorElement:<ErrorLayout></ErrorLayout>,
-  children: [
-    {
-      index:true,
-      Component:Home
-    },
-    {
-      path: "login",
-      Component:Login
-    },
-    {
-      path: "register",
-      Component: Register
-    },
-    {
-      path: "addQuery",
-      Component: AddQuery
-    },
-    {
-      path:'allQuery',
-      loader:()=>fetch('http://localhost:3000/queries'),
-      Component:AllQuerys
-    },
-    {
-      path: 'query/:id',
-
-  loader: () => fetch(`http://localhost:3000/queries`),
-  Component:QueryDetails
-    },
-    {
-      path:'myQuery',
-      Component:MyQuery
-    },
-   {
-  path: 'myUpdateQuery/:id',
-  loader: ({ params }) => fetch(`http://localhost:3000/queries/id/${params.id}`),
-  Component: MyUpdateQuery
+    element: <MainLayout />, // ✅ use element for layout
+    errorElement: <ErrorLayout />,
+    children: [
+      {
+        index: true,
+        element: <Home />
+      },
+      {
+        path: "login",
+        element: <Login />
+      },
+      {
+        path: "register",
+        element: <Register />
+      },
+      {
+        path: "addQuery",
+        element: (
+          <PrivetRoute>
+            <AddQuery />
+          </PrivetRoute>
+        )
+      },
+      {
+        path: "allQuery",
+        loader: () => fetch("http://localhost:3000/queries"),
+        element: <AllQuerys />
+      },
+      {
+        path: "query/:id",
+        loader: ({ params }) =>
+          fetch(`http://localhost:3000/queries/id/${params.id}`),
+        element: (
+          <PrivetRoute>
+            <QueryDetails />
+          </PrivetRoute>
+        )
+      },
+      {
+        path: "myQuery",
+        element: (
+          <PrivetRoute>
+            <MyQuery />
+          </PrivetRoute>
+        )
+      },
+      {
+        path: "myUpdateQuery/:id",
+        loader: ({ params }) =>
+          fetch(`http://localhost:3000/queries/id/${params.id}`),
+        element: (
+          <PrivetRoute>
+            <MyUpdateQuery />
+          </PrivetRoute>
+        )
+      },
+      {
+        path:'my-recommendations',
+        element:<PrivetRoute>
+          <MyRecomondation></MyRecomondation>
+        </PrivetRoute>
+      },
+      {
+        path:'recommendations-for-me',
+        element:<PrivetRoute>
+    <RecomondationForMe></RecomondationForMe>
+        </PrivetRoute>
+      }
+    ]
   }
-
-
-
-  ]
-  },
 ]);

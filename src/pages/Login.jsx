@@ -1,13 +1,15 @@
 import React, { useContext } from "react";
 import { motion } from "framer-motion";
-import { Link } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 import { AuthContext } from "../context/AuthContext";
 import Swal from "sweetalert2";
 
 const Login = () => {
 
   const { signItWithGoogle,login}=useContext(AuthContext);
-
+  const location=useLocation();
+  const navigate=useNavigate();
+  const from = location.state?.from?.pathname || "/";
 
   const handeLogin=(e)=>{
     e.preventDefault();
@@ -23,6 +25,7 @@ const Login = () => {
   showConfirmButton: false,
   timer: 1500
 });
+  navigate(from)
       console.log(res);
     })
 
@@ -44,6 +47,7 @@ const Login = () => {
           confirmButtonColor: '#6366F1',
           confirmButtonText: 'Nice!',
         });
+        navigate(from)
     })
     
   }

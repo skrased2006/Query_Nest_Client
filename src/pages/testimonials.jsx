@@ -66,7 +66,7 @@ export default function TestimonialSection() {
 
   return (
     <section className="bg-gray-100 py-16 px-6 md:px-10" aria-label="Customer testimonials">
-      <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+      <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 items-center m-10">
         {/* Left: Testimonial Card */}
         <AnimatePresence mode="wait">
           <motion.article

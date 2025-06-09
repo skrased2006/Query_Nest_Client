@@ -1,10 +1,20 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../context/AuthContext';
 import axios from 'axios';
 import Swal from 'sweetalert2';
+import Loading from './Loading/Loading';
 
 const AddQuery = () => {
     const {user}=useContext(AuthContext);
+
+    const [loading,setLoading]=useState(true);
+
+    useEffect(()=>{
+      const timer=setTimeout(()=>{
+        setLoading(false);
+      },800)
+    return ()=>clearTimeout(timer)
+    })
 
 
     const handleForm=(e)=>{
@@ -41,12 +51,14 @@ const AddQuery = () => {
    
         
     }
-
+if(loading){
+  return <Loading></Loading>
+}
 
 
   return (
     <div className="max-w-3xl mx-auto p-6 bg-white shadow-md rounded-xl mt-10">
-      <h2 className="text-2xl font-semibold text-center text-green-700 mb-6">
+      <h2 className="text-2xl font-semibold text-center text-indigo-700 mb-6">
         Submit a New Product Query
       </h2>
 

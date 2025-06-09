@@ -1,11 +1,11 @@
-// src/components/Slider.jsx
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/effect-fade';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import { EffectFade, Autoplay, Pagination, Navigation } from 'swiper/modules';
-import { Link } from 'react-router';
+import { Link } from 'react-router'; // ✅ Fixed import
+import { motion } from 'framer-motion';
 
 const Slider = () => {
   return (
@@ -17,75 +17,87 @@ const Slider = () => {
           delay: 4000,
           disableOnInteraction: false,
         }}
-        pagination={{
-          clickable: true,
-        }}
+        pagination={{ clickable: true }}
         navigation={true}
+        effect="fade"
         modules={[Autoplay, Pagination, Navigation, EffectFade]}
         className="h-full"
       >
+
         {/* Slide 1 */}
         <SwiperSlide>
           <div
-            className="h-full bg-cover bg-center flex flex-col items-center justify-center text-white"
+            className="hero min-h-full bg-cover bg-center"
             style={{
               backgroundImage:
-                "url('https://i.ibb.co/DNgsBBk/Organizational-Knowledge-Sharing-994561500395.jpg')",
+                "url('https://i.ibb.co/nq4MTpLz/Sk-Rased-A-thoughtful-young-person-sitting-at-a-desk-with-a-c8ec6365-7092-4454-a541-926b4631abca.png')",
             }}
           >
-            <div className=" bg-opacity-50 w-full h-full flex flex-col justify-center items-center">
-              <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold text-center px-4">
-                Ask Smart. Learn Fast.
-              </h2>
-              <Link to="/login">
-                <button className="mt-6 sm:mt-10 px-6 py-2 bg-indigo-600 hover:bg-indigo-700 rounded-lg text-white font-medium">
-                  Join QueryNest
-                </button>
-              </Link>
+            <div ></div>
+            <div className="hero-content text-neutral-content text-center">
+              <motion.div
+                className="items-center"
+                initial={{ opacity: 0, y: 40 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1 }}
+              >
+                <h1 className="mb-5 text-3xl sm:text-5xl font-bold">Got a Problem? Just Ask!</h1>
+                <Link to="/queries">
+                  <button className="btn btn-primary mt-2">Get Started</button>
+                </Link>
+              </motion.div>
             </div>
           </div>
         </SwiperSlide>
 
         {/* Slide 2 */}
-        <SwiperSlide>
+       <SwiperSlide>
           <div
-            className="h-full bg-cover bg-center flex flex-col items-center justify-center text-white"
+            className="hero min-h-full bg-cover bg-center"
             style={{
               backgroundImage:
-                "url('https://i.ibb.co/DNgsBBk/Organizational-Knowledge-Sharing-994561500395.jpg')",
+                "url('https://i.ibb.co/TMz6wrjW/Sk-Rased-A-confident-young-adult-explaining-something-to-ot-fdc7f972-c220-478e-ba7c-ab75af8eeaa8.png')",
             }}
           >
-            <div className=" bg-opacity-50 w-full h-full flex flex-col justify-center items-center">
-              <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold text-center px-4">
-                Help Others. Share Knowledge.
-              </h2>
-              <Link to="/queries">
-                <button className="mt-6 sm:mt-10 px-6 py-2 bg-indigo-600 hover:bg-indigo-700 rounded-lg text-white font-medium">
-                  Browse Queries
-                </button>
-              </Link>
+            <div ></div>
+            <div className="hero-content text-neutral-content text-center">
+              <motion.div
+                className="items-center"
+                initial={{ opacity: 0, y: 40 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1 }}
+              >
+                <h1 className="mb-5 text-3xl sm:text-5xl font-bold">  Share What You Know</h1>
+                <Link to="/queries">
+                  <button className="btn btn-primary mt-2"> Answer Queries</button>
+                </Link>
+              </motion.div>
             </div>
           </div>
         </SwiperSlide>
 
         {/* Slide 3 */}
-        <SwiperSlide>
+       <SwiperSlide>
           <div
-            className="h-full bg-cover bg-center flex flex-col items-center justify-center text-white"
+            className="hero min-h-full bg-cover bg-center"
             style={{
               backgroundImage:
-                "url('https://i.ibb.co/S4xDMN2H/What-are-Personalized-Recommendations.jpg')",
+                "url('https://i.ibb.co/zWc3Tpdm/e8c477bc-e0f6-4ad7-91eb-12e8ebb4f99f.jpg')",
             }}
           >
-            <div className=" bg-opacity-50 w-full h-full flex flex-col justify-center items-center">
-              <h2 className="text-2xl sm:text-3xl md:text-5xl font-bold text-center px-4">
-                Get Personalized Recommendations
-              </h2>
-              <Link to="/recommendations-for-me">
-                <button className="mt-6 sm:mt-10 px-6 py-2 bg-indigo-600 hover:bg-indigo-700 rounded-lg text-white font-medium">
-                  Explore Now
-                </button>
-              </Link>
+            <div ></div>
+            <div className="hero-content text-neutral-content text-center">
+              <motion.div
+                className="items-center"
+                initial={{ opacity: 0, y: 40 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 1 }}
+              >
+                <h1 className="mb-5 text-3xl sm:text-5xl font-bold">   Get Smart Recommendations</h1>
+                <Link to="/queries">
+                  <button className="btn btn-primary mt-2">View Recommendations</button>
+                </Link>
+              </motion.div>
             </div>
           </div>
         </SwiperSlide>
@@ -95,3 +107,32 @@ const Slider = () => {
 };
 
 export default Slider;
+
+
+//  <motion.h2
+//                 className="text-2xl sm:text-4xl md:text-5xl font-bold"
+//                 initial={{ scale: 0.9, opacity: 0 }}
+//                 animate={{ scale: 1, opacity: 1 }}
+//                 transition={{ duration: 1 }}
+//               >
+//                 Share What You Know
+//               </motion.h2>
+//               <Link to="/queries">
+//                 <button className="mt-6 px-6 py-2 bg-green-600 hover:bg-green-700 rounded-lg font-medium">
+//                   Answer Queries
+//                 </button>
+//               </Link>
+
+  // <motion.h2
+  //               className="text-2xl sm:text-4xl md:text-5xl font-bold"
+  //               initial={{ x: -100, opacity: 0 }}
+  //               animate={{ x: 0, opacity: 1 }}
+  //               transition={{ duration: 1 }}
+  //             >
+  //               Get Smart Recommendations
+  //             </motion.h2>
+  //             <Link to="/recommendations-for-me">
+  //               <button className="mt-6 px-6 py-2 bg-blue-600 hover:bg-blue-700 rounded-lg font-medium">
+  //                 View Recommendations
+  //               </button>
+  //             </Link>

@@ -1,18 +1,32 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useLoaderData } from 'react-router'; // ✅ ঠিক করা হয়েছে import
 import SingleQuery from './SingleQuery';
+import Loading from './Loading/Loading';
 
 const AllQuerys = () => {
   const data = useLoaderData();
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false);
+    }, 500);
+
+    return () => clearTimeout(timer);
+  }, []);
+
 
   // Descending order এ sort করা (নতুন আগে)
   const sortedData = [...data].sort(
     (a, b) => new Date(b.date) - new Date(a.date)
   );
+    if (loading) {
+    return <Loading />;
+  }
 
   return (
-    <div className="max-w-7xl mx-auto px-4 py-8">
-      <h2 className="text-3xl font-semibold text-center text-green-700 mb-8">
+    <div className="max-w-7xl mx-auto px-4 py-8 ">
+      <h2 className="text-3xl font-semibold text-center text-indigo-700 mb-8">
         All Product Queries
       </h2>
 
