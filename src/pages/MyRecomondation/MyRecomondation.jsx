@@ -4,18 +4,23 @@ import Swal from 'sweetalert2';
 
 const MyRecommendation = () => {
   const { user } = useContext(AuthContext);
+  console.log('token in the context',user.accessToken);
   const [recommendations, setRecommendations] = useState([]);
 
   useEffect(() => {
     if (user?.email) {
-      fetch(`http://localhost:3000/my-recommendations?email=${user.email}`)
+      fetch(`http://localhost:3000/my-recommendations?email=${user.email}`,{
+        headers:{
+          authorization:`Bearer ${user.accessToken}`
+        }
+      })
         .then((res) => res.json())
         .then((data) => {
           setRecommendations(data);
         })
         .catch((err) => console.error('Fetch error:', err));
     }
-  }, [user?.email]);
+  }, [user?.email,user?.accessToken]);
 
 const handleDelete = async (id) => {
     console.log("Deleting recommendation with ID:", id)

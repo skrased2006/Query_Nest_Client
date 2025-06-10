@@ -42,7 +42,7 @@ const Slider = () => {
                 transition={{ duration: 1 }}
               >
                 <h1 className="mb-5 text-3xl sm:text-5xl font-bold">Got a Problem? Just Ask!</h1>
-                <Link to="/queries">
+                <Link to="/addQuery">
                   <button className="btn btn-primary mt-2">Get Started</button>
                 </Link>
               </motion.div>
@@ -68,7 +68,7 @@ const Slider = () => {
                 transition={{ duration: 1 }}
               >
                 <h1 className="mb-5 text-3xl sm:text-5xl font-bold">  Share What You Know</h1>
-                <Link to="/queries">
+                <Link to="/allQuery">
                   <button className="btn btn-primary mt-2"> Answer Queries</button>
                 </Link>
               </motion.div>
@@ -93,8 +93,8 @@ const Slider = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 1 }}
               >
-                <h1 className="mb-5 text-3xl sm:text-5xl font-bold">   Get Smart Recommendations</h1>
-                <Link to="/queries">
+                <h1 className="mb-5 text-3xl sm:text-5xl font-bold">  Get Smart Recommendations</h1>
+                <Link to="/allQuery">
                   <button className="btn btn-primary mt-2">View Recommendations</button>
                 </Link>
               </motion.div>

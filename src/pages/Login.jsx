@@ -48,6 +48,7 @@ const Login = () => {
           confirmButtonText: 'Nice!',
         });
         navigate(from)
+        console.log(res);
     })
     
   }

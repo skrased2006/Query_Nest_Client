@@ -41,7 +41,8 @@ const AddQuery = () => {
        title: 'Your query was added successfully!',
     showConfirmButton: false,
     timer: 1500
- });
+    });
+  form.reset();
       }
         console.log(res.data);
     })

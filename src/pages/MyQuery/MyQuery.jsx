@@ -16,13 +16,17 @@ const MyQuery = () => {
 
   useEffect(() => {
     if (user?.email) {
-      fetch(`http://localhost:3000/queries/email/${user.email}`)
+      fetch(`http://localhost:3000/queries/email/${user.email}`,{
+        headers:{
+          authorization:`Bearer ${user.accessToken}`
+        }
+      })
         .then((res) => res.json())
         .then((data) => {
           setMyQuery(data);
         });
     }
-  }, [user?.email]);
+  }, [user?.email,user?.accessToken]);
 
   const sortedData = [...myQuery].sort(
     (a, b) => new Date(b.date) - new Date(a.date)

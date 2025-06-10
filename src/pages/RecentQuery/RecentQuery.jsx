@@ -24,7 +24,7 @@ const RecentQuery = () => {
         🔍 Recent Queries
       </h1>
 
-      <div className='grid grid-cols-3 gap-4 mt-10'>
+      <div className='grid grid-cols-1 gap-4 mt-10 sm:grid-cols-3'>
         {
             recentQueries.map(recentSingleQuery=><RecentSingleQuery 
                 recentSingleQuery={recentSingleQuery}
