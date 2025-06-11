@@ -1,9 +1,18 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../context/AuthContext';
+import { Typewriter } from 'react-simple-typewriter';
+import Loading from '../Loading/Loading';
 
 const RecommendationsForMe = () => {
   const { user } = useContext(AuthContext);
   const [recommendations, setRecommendations] = useState([]);
+   const [loading, setLoading] = useState(true);
+
+   useEffect(() => {
+    const timer = setTimeout(() => setLoading(false), 500);
+    return () => clearTimeout(timer);
+  }, []);
+
 
   useEffect(() => {
     const fetchRecommendations = async () => {
@@ -25,9 +34,26 @@ const RecommendationsForMe = () => {
     fetchRecommendations();
   }, [user]);
 
+  if (loading) {
+    return <Loading />;
+  }
+
+
   return (
     <div className="p-6">
-      <h2 className="text-2xl font-bold mb-4 text-center">Recommendations For Me</h2>
+      <h2 className="text-2xl font-bold text-indigo-600 mb-4 text-center">
+         <Typewriter
+              words={[
+              ' Recommendations For Me',
+             ]}
+             loop={true}
+             cursor
+             cursorStyle="|"
+             typeSpeed={70}
+             deleteSpeed={50}
+             delaySpeed={1500}
+          /> 
+      </h2>
 
       {recommendations.length === 0 ? (
         <p className="text-center text-gray-600">No recommendations yet.</p>

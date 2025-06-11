@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Typewriter } from 'react-simple-typewriter';
 
 const testimonials = [
   {
@@ -127,7 +128,18 @@ export default function TestimonialSection() {
         {/* Right: Success Stories */}
       <aside className="bg-gradient-to-r from-blue-600 via-purple-700 to-red-400 text-white p-12 md:p-16 rounded-2xl shadow-xl flex flex-col justify-center items-center">
   <h2 className="text-4xl font-extrabold mb-4 text-center tracking-wide drop-shadow-md">
-    SUCCESS STORIES
+      <Typewriter
+          words={[
+          ' SUCCESS STORIES',
+         ]}
+         loop={true}
+         cursor
+         cursorStyle="|"
+         typeSpeed={100}
+         deleteSpeed={150}
+         delaySpeed={1500}
+      /> 
+   
   </h2>
   <div className="w-24 h-1 bg-white rounded-full mx-auto mb-8 shadow-lg"></div>
   <p className="italic text-center text-lg max-w-xl leading-relaxed drop-shadow-sm">

@@ -1,12 +1,18 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { AuthContext } from '../../context/AuthContext';
 import Swal from 'sweetalert2';
+import { Typewriter } from 'react-simple-typewriter';
+import Loading from '../Loading/Loading';
 
 const MyRecommendation = () => {
   const { user } = useContext(AuthContext);
-  console.log('token in the context',user.accessToken);
   const [recommendations, setRecommendations] = useState([]);
+const [loading, setLoading] = useState(true);
 
+   useEffect(() => {
+    const timer = setTimeout(() => setLoading(false), 500);
+    return () => clearTimeout(timer);
+  }, []);
   useEffect(() => {
     if (user?.email) {
       fetch(`http://localhost:3000/my-recommendations?email=${user.email}`,{
@@ -54,11 +60,27 @@ const handleDelete = async (id) => {
       });
   }
 };
+if (loading) {
+    return <Loading />;
+  }
+
 
 
   return (
     <div className="p-4">
-      <h2 className="text-2xl font-bold mb-4 text-center">My Recommendations</h2>
+      <h2 className="text-2xl font-bold mb-4 text-center text-indigo-600">
+         <Typewriter
+              words={[
+              ' My Recommendations',
+             ]}
+             loop={true}
+             cursor
+             cursorStyle="|"
+             typeSpeed={70}
+             deleteSpeed={50}
+             delaySpeed={1500}
+          /> 
+        </h2>
       {recommendations.length === 0 ? (
         <p className="text-center text-gray-600">No recommendations found.</p>
       ) : (

@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { Typewriter } from 'react-simple-typewriter';
 
 const features = [
   {
@@ -29,7 +30,18 @@ const ExtraSection = () => {
     <section className="bg-gradient-to-r from-green-400 to-blue-500 py-16 px-6 text-white">
       <div className="max-w-6xl mx-auto text-center mb-12">
         <h2 className="text-4xl font-bold mb-4 drop-shadow-lg">
-          Why Choose Us?
+           <Typewriter
+                    words={[
+                    ' Why Choose Us?',
+                   ]}
+                   loop={true}
+                   cursor
+                   cursorStyle="|"
+                   typeSpeed={100}
+                   deleteSpeed={150}
+                   delaySpeed={1500}
+                /> 
+         
         </h2>
         <p className="text-lg max-w-xl mx-auto drop-shadow-md">
           We provide the best platform to get your queries answered with accuracy and speed.

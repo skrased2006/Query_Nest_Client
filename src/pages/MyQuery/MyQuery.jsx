@@ -3,6 +3,7 @@ import { AuthContext } from '../../context/AuthContext';
 import MySingleQuery from './MySingleQuery';
 import Loading from '../Loading/Loading';
 import { Link } from 'react-router';
+import { Fade, Slide, Zoom } from 'react-awesome-reveal';
 
 const MyQuery = () => {
   const { user } = useContext(AuthContext);
@@ -16,9 +17,9 @@ const MyQuery = () => {
 
   useEffect(() => {
     if (user?.email) {
-      fetch(`http://localhost:3000/queries/email/${user.email}`,{
-        headers:{
-          authorization:`Bearer ${user.accessToken}`
+      fetch(`http://localhost:3000/queries/email/${user.email}`, {
+        headers: {
+          authorization: `Bearer ${user.accessToken}`
         }
       })
         .then((res) => res.json())
@@ -26,7 +27,7 @@ const MyQuery = () => {
           setMyQuery(data);
         });
     }
-  }, [user?.email,user?.accessToken]);
+  }, [user?.email, user?.accessToken]);
 
   const sortedData = [...myQuery].sort(
     (a, b) => new Date(b.date) - new Date(a.date)
@@ -44,36 +45,41 @@ const MyQuery = () => {
   return (
     <div className='max-w-7xl mx-auto py-8 px-4'>
       {/* 🔷 Banner Section */}
-      <div className="bg-indigo-100 rounded-lg p-6 mb-8 text-center">
-        <h1 className="text-4xl font-bold text-indigo-700 mb-4">Your Private Queries</h1>
-        <p className="text-gray-600 mb-4">Manage all your submitted queries in one place.</p>
-        <Link to="/addQuery">
-          <button className="bg-indigo-600 text-white px-6 py-2 rounded hover:bg-indigo-700 transition">
-            ➕ Add Query
-          </button>
-        </Link>
-      </div>
+      <Slide direction="down" triggerOnce>
+        <div className="bg-indigo-100 rounded-lg p-6 mb-8 text-center">
+          <h1 className="text-4xl font-bold text-indigo-700 mb-4">Your Private Queries</h1>
+          <p className="text-gray-600 mb-4">Manage all your submitted queries in one place.</p>
+          <Link to="/addQuery">
+            <button className="bg-indigo-600 text-white px-6 py-2 rounded hover:bg-indigo-700 transition">
+              ➕ Add Query
+            </button>
+          </Link>
+        </div>
+      </Slide>
 
       {/* 🔷 Query List Section */}
       {sortedData.length > 0 ? (
         <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
-          {sortedData.map((mySingleQuery) => (
-            <MySingleQuery
-              key={mySingleQuery._id}
-              mySingleQuery={mySingleQuery}
-              onDelete={handleDelete}
-            />
+          {sortedData.map((mySingleQuery, index) => (
+            <Zoom delay={index * 100} triggerOnce key={mySingleQuery._id}>
+              <MySingleQuery
+                mySingleQuery={mySingleQuery}
+                onDelete={handleDelete}
+              />
+            </Zoom>
           ))}
         </div>
       ) : (
-        <div className="text-center mt-12">
-          <p className="text-gray-500 text-lg mb-4">🚫 No queries found.</p>
-          <Link to="/addQuery">
-            <button className="bg-indigo-500 text-white px-5 py-2 rounded hover:bg-indigo-600 transition">
-              ➕ Add Your First Query
-            </button>
-          </Link>
-        </div>
+        <Fade triggerOnce>
+          <div className="text-center mt-12">
+            <p className="text-gray-500 text-lg mb-4"> No queries found.</p>
+            <Link to="/addQuery">
+              <button className="bg-indigo-500 text-white px-5 py-2 rounded hover:bg-indigo-600 transition">
+                ➕ Add Your First Query
+              </button>
+            </Link>
+          </div>
+        </Fade>
       )}
     </div>
   );
