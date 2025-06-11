@@ -17,7 +17,7 @@ const MyQuery = () => {
 
   useEffect(() => {
     if (user?.email) {
-      fetch(`http://localhost:3000/queries/email/${user.email}`, {
+      fetch(`https://query-nest-server-rho.vercel.app/queries/email/${user.email}`, {
         headers: {
           authorization: `Bearer ${user.accessToken}`
         }

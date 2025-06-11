@@ -19,7 +19,7 @@ const RecommendationsForMe = () => {
       if (!user?.email) return;
 
       try {
-        const response = await fetch(`http://localhost:3000/recommendations-for-me?email=${user.email}`,{
+        const response = await fetch(`https://query-nest-server-rho.vercel.app/recommendations-for-me?email=${user.email}`,{
           headers:{
                authorization:`Bearer ${user.accessToken}`
           }

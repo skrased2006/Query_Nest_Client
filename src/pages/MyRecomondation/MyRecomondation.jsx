@@ -15,7 +15,7 @@ const [loading, setLoading] = useState(true);
   }, []);
   useEffect(() => {
     if (user?.email) {
-      fetch(`http://localhost:3000/my-recommendations?email=${user.email}`,{
+      fetch(`https://query-nest-server-rho.vercel.app/my-recommendations?email=${user.email}`,{
         headers:{
           authorization:`Bearer ${user.accessToken}`
         }
@@ -40,7 +40,7 @@ const handleDelete = async (id) => {
   });
 
   if (confirm.isConfirmed) {
-    fetch(`http://localhost:3000/my-recommendations/${id}`, {
+    fetch(`https://query-nest-server-rho.vercel.app/my-recommendations/${id}`, {
       method: 'DELETE',
     })
       .then((res) => res.json())
