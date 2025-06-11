@@ -24,9 +24,8 @@ const MainLayout = () => {
         <div className="flex flex-col min-h-screen">
 
             <header>
-                <Slide direction="down" triggerOnce duration={600}>
+                
                     <Navbar />
-                </Slide>
             </header>
 
             <main className='flex-grow'>
