@@ -36,9 +36,6 @@ const handleDelete = async (id) => {
   if (confirm.isConfirmed) {
     fetch(`http://localhost:3000/my-recommendations/${id}`, {
       method: 'DELETE',
-      headers: {
-        authorization: `Bearer ${user.accessToken}`
-      }
     })
       .then((res) => res.json())
       .then((data) => {

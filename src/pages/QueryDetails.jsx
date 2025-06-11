@@ -1,9 +1,10 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useLoaderData, useParams } from 'react-router';
 import { AuthContext } from '../context/AuthContext';
 import axios from 'axios';
 import AllRecommendation from './AllRecomondation/AllRecommendation';
 import ProductRecommendations from './AllRecomondation/AllRecommendation';
+import Swal from 'sweetalert2';
 
 const QueryDetails = () => {
   const { id } = useParams();
@@ -11,6 +12,17 @@ const QueryDetails = () => {
  
   const singleQueryData = useLoaderData();
  const singleQuery = singleQueryData;
+  const [recommendations, setRecommendations] = useState([]);
+  useEffect(() => {
+    if (singleQuery._id) {
+      fetch(`http://localhost:3000/recommendation/${singleQuery._id}`)
+        .then(res => res.json())
+        .then(data => setRecommendations(data))
+        .catch(err => console.error(err));
+    }
+  }, [singleQuery._id]);
+
+
 
 
   const handleRecommend=(e)=>{
@@ -36,8 +48,27 @@ const QueryDetails = () => {
 
    axios.post('http://localhost:3000/recommendation',recommendation)
    .then((res)=>{
-    console.log(res.data);
-   })
+    if (res.data.insertedId || res.data.acknowledged) {
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: 'Your recommendation was added successfully!',
+            showConfirmButton: false,
+            timer: 1500
+          });
+          form.reset();
+          setRecommendations(prev => [...prev, recommendation]);
+        }
+      })
+      .catch(err => {
+        console.error(err);
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops...',
+          text: 'Something went wrong!'
+        });
+      });
+   
 
 
 
@@ -124,7 +155,7 @@ const QueryDetails = () => {
       </section>
 
       <div>
-        <ProductRecommendations productId={singleQuery._id}></ProductRecommendations>
+        <ProductRecommendations recommendations={recommendations}></ProductRecommendations>
       </div>
 
      
@@ -133,6 +164,9 @@ const QueryDetails = () => {
 };
 
 export default QueryDetails;
+
+
+
 
 
 
