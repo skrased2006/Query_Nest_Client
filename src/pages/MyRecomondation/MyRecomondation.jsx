@@ -23,9 +23,39 @@ const MyRecommendation = () => {
   }, [user?.email,user?.accessToken]);
 
 const handleDelete = async (id) => {
-    console.log("Deleting recommendation with ID:", id)
- 
-  
+  const confirm = await Swal.fire({
+    title: 'Are you sure?',
+    text: 'You will not be able to recover this recommendation!',
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#d33',
+    cancelButtonColor: '#3085d6',
+    confirmButtonText: 'Yes, delete it!'
+  });
+
+  if (confirm.isConfirmed) {
+    fetch(`http://localhost:3000/my-recommendations/${id}`, {
+      method: 'DELETE',
+      headers: {
+        authorization: `Bearer ${user.accessToken}`
+      }
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.deletedCount > 0) {
+          setRecommendations((prev) =>
+            prev.filter((rec) => rec._id !== id)
+          );
+          Swal.fire('Deleted!', 'Your recommendation has been deleted.', 'success');
+        } else {
+          Swal.fire('Error', 'Failed to delete the recommendation.', 'error');
+        }
+      })
+      .catch((err) => {
+        console.error('Delete error:', err);
+        Swal.fire('Error', 'Something went wrong.', 'error');
+      });
+  }
 };
 
 
