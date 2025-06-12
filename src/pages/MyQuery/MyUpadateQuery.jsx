@@ -19,7 +19,7 @@ const MyUpdateQuery = () => {
     const form=e.target;
     const fromData =new FormData(form);
     const updateData=Object.fromEntries(fromData.entries())
-    axios.patch(`https://query-nest-server-rho.vercel.app/queries/id/${_id}`,updateData)
+    axios.patch(`https://my-query-server.vercel.app/queries/id/${_id}`,updateData)
     .then((res) =>{
        
        Swal.fire({

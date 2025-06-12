@@ -18,7 +18,7 @@ const MyQuery = () => {
 
   useEffect(() => {
     if (user?.email) {
-      axios(`https://query-nest-server-rho.vercel.app/queries/email/${user.email}`, {
+      axios(`https://my-query-server.vercel.app/queries/email/${user.email}`, {
         headers: {
           authorization: `Bearer ${user.accessToken}`
         }

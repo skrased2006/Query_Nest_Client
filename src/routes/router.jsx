@@ -1,6 +1,6 @@
 import {
   createBrowserRouter,
-} from "react-router"; // ✅ make sure it's 'react-router-dom'
+} from "react-router"; 
 import MainLayout from "../layouts/MainLayout";
 import Home from "../pages/Home";
 import ErrorLayout from "../layouts/ErrorLayout";
@@ -18,7 +18,7 @@ import RecomondationForMe from "../pages/RecomondationForMe/RecomondationForMe";
 export const router = createBrowserRouter([
   {
     path: "/",
-    element: <MainLayout />, // ✅ use element for layout
+    element: <MainLayout />, 
     errorElement: <ErrorLayout />,
     children: [
       {
@@ -43,13 +43,13 @@ export const router = createBrowserRouter([
       },
       {
         path: "allQuery",
-        loader: () => fetch("https://query-nest-server-rho.vercel.app/queries"),
+        loader: () => fetch("https://my-query-server.vercel.app/queries"),
         element: <AllQuerys />
       },
       {
         path: "query/:id",
         loader: ({ params }) =>
-          fetch(`https://query-nest-server-rho.vercel.app/queries/id/${params.id}`),
+          fetch(`https://my-query-server.vercel.app/queries/id/${params.id}`),
         element: (
           <PrivetRoute>
             <QueryDetails />
@@ -67,7 +67,7 @@ export const router = createBrowserRouter([
       {
         path: "myUpdateQuery/:id",
         loader: ({ params }) =>
-          fetch(`https://query-nest-server-rho.vercel.app/queries/id/${params.id}`),
+          fetch(`https://my-query-server.vercel.app/queries/id/${params.id}`),
         element: (
           <PrivetRoute>
             <MyUpdateQuery />
