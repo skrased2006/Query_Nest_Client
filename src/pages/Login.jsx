@@ -9,7 +9,7 @@ const Login = () => {
   const { signItWithGoogle,login}=useContext(AuthContext);
   const location=useLocation();
   const navigate=useNavigate();
-  const from = location.state?.from?.pathname || "/";
+  const from = location.state || "/";
 
   const handeLogin=(e)=>{
     e.preventDefault();

@@ -4,6 +4,7 @@ import MySingleQuery from './MySingleQuery';
 import Loading from '../Loading/Loading';
 import { Link } from 'react-router';
 import { Fade, Slide, Zoom } from 'react-awesome-reveal';
+import axios from 'axios';
 
 const MyQuery = () => {
   const { user } = useContext(AuthContext);
@@ -17,12 +18,11 @@ const MyQuery = () => {
 
   useEffect(() => {
     if (user?.email) {
-      fetch(`https://query-nest-server-rho.vercel.app/queries/email/${user.email}`, {
+      axios(`https://query-nest-server-rho.vercel.app/queries/email/${user.email}`, {
         headers: {
           authorization: `Bearer ${user.accessToken}`
         }
       })
-        .then((res) => res.json())
         .then((data) => {
           setMyQuery(data);
         });
