@@ -57,7 +57,7 @@ export default function TestimonialSection() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const current = testimonials[currentIndex];
 
-  // Auto-slide every 5 seconds
+  
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prev) => (prev + 1) % testimonials.length);
@@ -104,7 +104,7 @@ export default function TestimonialSection() {
               </div>
             </footer>
 
-            {/* Slider Dots */}
+            
             <nav
               className="flex mt-10 space-x-3 justify-start"
               aria-label="Select testimonial"
