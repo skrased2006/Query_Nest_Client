@@ -11,7 +11,6 @@ const RecentQuery = () => {
         fetch('https://query-nest-server-rho.vercel.app/recentQuery')
         .then(res=>res.json())
         .then(data=>{
-           console.log('Recent queries data:', data);
             setRecentQueries(data);
         })
     },[])

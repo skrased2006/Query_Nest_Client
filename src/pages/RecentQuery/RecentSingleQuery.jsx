@@ -10,7 +10,7 @@ const RecentSingleQuery = ({ recentSingleQuery }) => {
         productImage,
         queryTitle,
         date,
-        recommendationCount,  // নিশ্চিত করো তোমার ডাটাতে আছে
+        recommendationCount,  
     } = recentSingleQuery;
 
     const navigate = useNavigate();

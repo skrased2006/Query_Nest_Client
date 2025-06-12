@@ -5,7 +5,7 @@ const Footer = () => {
     <footer className="bg-gray-900 text-gray-300 py-10 ">
       <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-8">
 
-        {/* Logo + Name + Tagline */}
+      
         <div className="flex flex-col items-start space-y-2">
           <Link to="/" className="flex items-center gap-3 text-indigo-400 font-extrabold text-2xl">
             <img
@@ -20,7 +20,7 @@ const Footer = () => {
           </p>
         </div>
 
-        {/* Quick Links */}
+      
         <div>
           <h3 className="text-indigo-400 font-semibold mb-4">Quick Links</h3>
           <ul className="space-y-2 text-gray-300">
@@ -31,7 +31,7 @@ const Footer = () => {
           </ul>
         </div>
 
-        {/* Contact Info */}
+       
         <div>
           <h3 className="text-indigo-400 font-semibold mb-4">Contact Us</h3>
           <p>Email: <a href="mailto:support@querynest.com" className="hover:text-indigo-400 transition">support@querynest.com</a></p>
@@ -39,7 +39,7 @@ const Footer = () => {
           <p className="mt-4 text-gray-400 text-sm">Mon - Fri: 9 AM - 6 PM</p>
         </div>
 
-        {/* Social Media */}
+       
         <div>
           <h3 className="text-indigo-400 font-semibold mb-4">Follow Us</h3>
           <div className="flex space-x-6">
@@ -82,7 +82,7 @@ const Footer = () => {
         </div>
       </div>
 
-      {/* Bottom Copyright */}
+     
       <div className="mt-8 border-t border-gray-700 pt-4 text-center text-gray-500 text-sm">
         &copy; {new Date().getFullYear()} QueryNest Ltd. All rights reserved.
       </div>

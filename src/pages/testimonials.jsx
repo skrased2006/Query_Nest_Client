@@ -125,7 +125,7 @@ export default function TestimonialSection() {
           </motion.article>
         </AnimatePresence>
 
-        {/* Right: Success Stories */}
+        
       <aside className="bg-gradient-to-r from-blue-600 via-purple-700 to-red-400 text-white p-12 md:p-16 rounded-2xl shadow-xl flex flex-col justify-center items-center">
   <h2 className="text-4xl font-extrabold mb-4 text-center tracking-wide drop-shadow-md">
       <Typewriter

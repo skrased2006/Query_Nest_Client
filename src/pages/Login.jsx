@@ -26,7 +26,7 @@ const Login = () => {
   timer: 1500
 });
   navigate(from)
-      console.log(res);
+    
     })
 
 
@@ -48,7 +48,7 @@ const Login = () => {
           confirmButtonText: 'Nice!',
         });
         navigate(from)
-        console.log(res);
+       
     })
     
   }

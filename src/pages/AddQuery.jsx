@@ -44,7 +44,7 @@ const AddQuery = () => {
     });
   form.reset();
       }
-        console.log(res.data);
+     
     })
 
 

@@ -108,31 +108,3 @@ const Slider = () => {
 
 export default Slider;
 
-
-//  <motion.h2
-//                 className="text-2xl sm:text-4xl md:text-5xl font-bold"
-//                 initial={{ scale: 0.9, opacity: 0 }}
-//                 animate={{ scale: 1, opacity: 1 }}
-//                 transition={{ duration: 1 }}
-//               >
-//                 Share What You Know
-//               </motion.h2>
-//               <Link to="/queries">
-//                 <button className="mt-6 px-6 py-2 bg-green-600 hover:bg-green-700 rounded-lg font-medium">
-//                   Answer Queries
-//                 </button>
-//               </Link>
-
-  // <motion.h2
-  //               className="text-2xl sm:text-4xl md:text-5xl font-bold"
-  //               initial={{ x: -100, opacity: 0 }}
-  //               animate={{ x: 0, opacity: 1 }}
-  //               transition={{ duration: 1 }}
-  //             >
-  //               Get Smart Recommendations
-  //             </motion.h2>
-  //             <Link to="/recommendations-for-me">
-  //               <button className="mt-6 px-6 py-2 bg-blue-600 hover:bg-blue-700 rounded-lg font-medium">
-  //                 View Recommendations
-  //               </button>
-  //             </Link>
