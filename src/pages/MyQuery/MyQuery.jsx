@@ -18,14 +18,15 @@ const MyQuery = () => {
 
   useEffect(() => {
     if (user?.email) {
-      axios(`https://my-query-server.vercel.app/queries/email/${user.email}`, {
-        headers: {
-          authorization: `Bearer ${user.accessToken}`
-        }
-      })
-        .then((data) => {
-          setMyQuery(data);
-        });
+   axios(`https://my-query-server.vercel.app/queries/email/${user.email}`, {
+  headers: {
+    authorization: `Bearer ${user.accessToken}`
+  }
+})
+  .then((response) => {
+    setMyQuery(response.data);
+  });
+
     }
   }, [user?.email, user?.accessToken]);
 
