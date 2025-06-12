@@ -34,13 +34,13 @@ const RecentSingleQuery = ({ recentSingleQuery }) => {
            <p className="text-xs text-gray-400 mb-3">Date: {new Date(date).toLocaleString()}</p>
 
             <div className="flex justify-between items-center text-gray-600 mb-4">
-    {/* Comment count with icon */}
+ 
       <div className="flex items-center gap-1 text-sm">
       <FaRegComment className="text-blue-600" />
       <span>{recommendationCount ?? 0}</span>
    </div>
    
-  {/* Recommend button */}
+  
    <button
     onClick={handleRecommendClick}
     className="bg-blue-600 text-white text-sm font-medium px-4 py-1.5 rounded-md hover:bg-blue-700 transition-colors duration-200"

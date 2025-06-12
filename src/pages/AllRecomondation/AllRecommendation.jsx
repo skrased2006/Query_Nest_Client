@@ -22,7 +22,7 @@ const ProductRecommendations = ({recommendations }) => {
       ) : (
         sortedData.map((rec) => (
           <div key={rec._id} className="border rounded-lg p-4 mb-6 shadow-sm flex gap-4 items-start">
-            {/* Recommender photo */}
+        
            
               <img
                 src={rec.recommendedProductImage}
@@ -31,7 +31,7 @@ const ProductRecommendations = ({recommendations }) => {
               />
            
 
-            {/* Recommendation content */}
+           
             <div className="flex-1">
               <p className="font-semibold text-lg mb-1">Product Title: {rec.recommendationTitle}</p>
               <p className="text-gray-700 mb-2">

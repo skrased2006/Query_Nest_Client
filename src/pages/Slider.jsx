@@ -24,7 +24,7 @@ const Slider = () => {
         className="h-full"
       >
 
-        {/* Slide 1 */}
+      
         <SwiperSlide>
           <div
             className="hero min-h-full bg-cover bg-center"
@@ -50,7 +50,6 @@ const Slider = () => {
           </div>
         </SwiperSlide>
 
-        {/* Slide 2 */}
        <SwiperSlide>
           <div
             className="hero min-h-full bg-cover bg-center"
@@ -76,7 +75,7 @@ const Slider = () => {
           </div>
         </SwiperSlide>
 
-        {/* Slide 3 */}
+        
        <SwiperSlide>
           <div
             className="hero min-h-full bg-cover bg-center"

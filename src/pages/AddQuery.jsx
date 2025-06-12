@@ -64,7 +64,7 @@ if(loading){
       </h2>
 
       <form onSubmit={handleForm} className="space-y-5">
-        {/* Product Name */}
+       
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-1">
             Product Name
@@ -78,7 +78,6 @@ if(loading){
           />
         </div>
 
-        {/* Product Brand */}
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-1">
             Product Brand
@@ -92,7 +91,7 @@ if(loading){
           />
         </div>
 
-        {/* Product Image URL */}
+     
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-1">
             Product Image URL
@@ -106,7 +105,7 @@ if(loading){
           />
         </div>
 
-        {/* Query Title */}
+     
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-1">
             Query Title
@@ -120,7 +119,6 @@ if(loading){
           />
         </div>
 
-        {/* Boycott Reason */}
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-1">
             Boycotting Reason Details
@@ -134,7 +132,7 @@ if(loading){
           ></textarea>
         </div>
 
-        {/* Submit Button */}
+      
         <div className="text-center">
           <button
             type="submit"

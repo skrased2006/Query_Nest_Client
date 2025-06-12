@@ -44,7 +44,7 @@ const MyQuery = () => {
 
   return (
     <div className='max-w-7xl mx-auto py-8 px-4'>
-      {/* 🔷 Banner Section */}
+     
       <Slide direction="down" triggerOnce>
         <div className="bg-indigo-100 rounded-lg p-6 mb-8 text-center">
           <h1 className="text-4xl font-bold text-indigo-700 mb-4">Your Private Queries</h1>
@@ -57,7 +57,7 @@ const MyQuery = () => {
         </div>
       </Slide>
 
-      {/* 🔷 Query List Section */}
+      
       {sortedData.length > 0 ? (
         <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
           {sortedData.map((mySingleQuery, index) => (

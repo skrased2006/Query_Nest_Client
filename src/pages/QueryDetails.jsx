@@ -77,7 +77,7 @@ const QueryDetails = () => {
 
   return (
     <div className="max-w-3xl mx-auto bg-white shadow-lg rounded-xl p-6 my-8">
-      {/* Query Details */}
+      
       <img
         src={singleQuery.productImage}
         alt={singleQuery.productName}
@@ -96,7 +96,7 @@ const QueryDetails = () => {
         <p className="text-gray-600 text-sm">{singleQuery.boycottReason}</p>
       </section>
 
-      {/* User Info */}
+      
       <section className="flex items-center gap-4 mb-6">
         <img
           src={singleQuery?.userPhoto}
@@ -110,7 +110,7 @@ const QueryDetails = () => {
         </div>
       </section>
 
-      {/* Add Recommendation Form */}
+      
       <section className="mb-10">
         <h3 className="text-2xl font-semibold mb-4">Add a Recommendation</h3>
         <form onSubmit={handleRecommend}  className="space-y-4">

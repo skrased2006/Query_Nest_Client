@@ -29,7 +29,7 @@ const Navbar = () => {
   return (
     <header className="bg-white shadow-md sticky top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
-        {/* Left: Logo + Name */}
+      
         <Link
           to="/"
           className="flex items-center gap-2 text-indigo-600 font-bold text-xl"
@@ -42,7 +42,7 @@ const Navbar = () => {
           <span>QueryNest</span>
         </Link>
 
-        {/* Hamburger button for mobile */}
+        
         <button
           onClick={() => setIsMenuOpen(!isMenuOpen)}
           className="md:hidden text-gray-700 focus:outline-none"
@@ -81,7 +81,7 @@ const Navbar = () => {
           )}
         </button>
 
-        {/* Center + Right: Navigation */}
+        
         <nav
           className={`flex-col md:flex-row md:flex items-center gap-6 text-gray-800 font-medium mx-auto absolute md:static top-full left-0 right-0 bg-white md:bg-transparent md:justify-center transition-all duration-300 md:transition-none z-40 ${
             isMenuOpen ? "flex" : "hidden"
@@ -126,7 +126,6 @@ const Navbar = () => {
             </>
           )}
 
-          {/* Login / Logout button inside nav on mobile */}
           <div className="md:hidden mt-2">
             {user ? (
               <button
@@ -154,7 +153,7 @@ const Navbar = () => {
           </div>
         </nav>
 
-        {/* Login / Logout button for desktop */}
+      
         <div className="hidden md:block">
           {user ? (
             <button
