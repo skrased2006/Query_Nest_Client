@@ -32,7 +32,7 @@ const AddQuery = () => {
       date: new Date().toISOString(),
       recommendationCount: 0,
     };
-    axios.post('https://my-query-server.vercel.app/queries',newQuery)
+    axios.post('http://localhost:3000/queries',newQuery)
     .then(res=>{
       if(res.data.insertedId){
         Swal.fire({

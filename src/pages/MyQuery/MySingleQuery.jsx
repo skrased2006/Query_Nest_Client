@@ -24,7 +24,7 @@ const MySingleQuery = ({ mySingleQuery, onDelete }) => {
       confirmButtonText: "Yes, delete it!"
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`https://my-query-server.vercel.app/queries/${id}`, {
+        fetch(`http://localhost:3000/queries/${id}`, {
           method: 'DELETE',
         })
         .then(res => res.json())

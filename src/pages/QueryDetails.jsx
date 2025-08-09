@@ -15,7 +15,7 @@ const QueryDetails = () => {
   const [recommendations, setRecommendations] = useState([]);
   useEffect(() => {
     if (singleQuery._id) {
-      fetch(`https://my-query-server.vercel.app/recommendation/${singleQuery._id}`)
+      fetch(`http://localhost:3000/recommendation/${singleQuery._id}`)
         .then(res => res.json())
         .then(data => setRecommendations(data))
         .catch(err => console.error(err));
@@ -46,7 +46,7 @@ const QueryDetails = () => {
   recommenderPhoto: user.userPhoto, 
 };
 
-   axios.post('https://my-query-server.vercel.app/recommendation',recommendation)
+   axios.post('http://localhost:3000/recommendation',recommendation)
    .then((res)=>{
     if (res.data.insertedId || res.data.acknowledged) {
           Swal.fire({

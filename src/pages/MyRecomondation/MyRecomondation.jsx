@@ -15,7 +15,7 @@ const [loading, setLoading] = useState(true);
   }, []);
   useEffect(() => {
     if (user?.email) {
-      fetch(`https://my-query-server.vercel.app/my-recommendations?email=${user.email}`,{
+      fetch(`http://localhost:3000/my-recommendations?email=${user.email}`,{
         headers:{
           authorization:`Bearer ${user.accessToken}`
         }

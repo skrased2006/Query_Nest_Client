@@ -8,7 +8,7 @@ const RecentQuery = () => {
     const [recentQueries, setRecentQueries] = useState([]);
 
    useEffect(() => {
-    fetch('https://my-query-server.vercel.app/recentQuery')
+    fetch('http://localhost:3000/recentQuery')
         .then(res => res.json())
         .then(data => {
             setRecentQueries(data);

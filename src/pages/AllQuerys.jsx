@@ -7,6 +7,7 @@ import { Fade, Zoom, Slide } from 'react-awesome-reveal';
 
 const AllQuerys = () => {
   const data = useLoaderData();
+  console.log("all query",data);
   const [loading, setLoading] = useState(true);
   const [searchText, setSearchText] = useState('');
   const [columns, setColumns] = useState(3); 

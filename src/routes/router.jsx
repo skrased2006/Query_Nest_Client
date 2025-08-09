@@ -43,13 +43,13 @@ export const router = createBrowserRouter([
       },
       {
         path: "allQuery",
-        loader: () => fetch("https://my-query-server.vercel.app/queries"),
+        loader: () => fetch("http://localhost:3000/queries"),
         element: <AllQuerys />
       },
       {
         path: "query/:id",
         loader: ({ params }) =>
-          fetch(`https://my-query-server.vercel.app/queries/id/${params.id}`),
+          fetch(`http://localhost:3000/queries/id/${params.id}`),
         element: (
           <PrivetRoute>
             <QueryDetails />
@@ -67,7 +67,7 @@ export const router = createBrowserRouter([
       {
         path: "myUpdateQuery/:id",
         loader: ({ params }) =>
-          fetch(`https://my-query-server.vercel.app/queries/id/${params.id}`),
+          fetch(`http://localhost:3000/queries/id/${params.id}`),
         element: (
           <PrivetRoute>
             <MyUpdateQuery />
