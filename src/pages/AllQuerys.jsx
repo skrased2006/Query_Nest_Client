@@ -11,7 +11,7 @@ const AllQuerys = () => {
   const [loading, setLoading] = useState(true);
   const [searchText, setSearchText] = useState('');
   const [columns, setColumns] = useState(3);
-  const [sortBy, setSortBy] = useState('date'); // Sorting criteria state
+  const [sortBy, setSortBy] = useState('date'); 
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -21,7 +21,7 @@ const AllQuerys = () => {
     return () => clearTimeout(timer);
   }, []);
 
-  // Sort data based on selected sortBy
+ 
   const sortedData = [...data].sort((a, b) => {
     if (sortBy === 'date') {
       return new Date(b.date) - new Date(a.date);
@@ -33,7 +33,7 @@ const AllQuerys = () => {
     return 0;
   });
 
-  // Filter after sorting
+
   const filteredData = sortedData.filter((item) =>
     item.productName.toLowerCase().includes(searchText.toLowerCase())
   );
@@ -68,7 +68,7 @@ const AllQuerys = () => {
         />
       </Slide>
 
-      {/* Sorting dropdown */}
+   
       <div className="flex justify-center mb-6">
         <select
           value={sortBy}
@@ -81,7 +81,6 @@ const AllQuerys = () => {
         </select>
       </div>
 
-      {/* Grid layout toggle buttons */}
       <div className="flex justify-center gap-3 mb-8">
         {[2, 3, 4].map((col) => (
           <button

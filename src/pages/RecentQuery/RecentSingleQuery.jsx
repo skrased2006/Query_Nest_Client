@@ -20,7 +20,7 @@ const RecentSingleQuery = ({ recentSingleQuery }) => {
   };
 
   return (
-    <div className="bg-gradient-to-tr from-pink-50 via-purple-50 to-indigo-50 shadow-md rounded-xl p-6 mb-6 transform transition-transform duration-300 hover:shadow-2xl hover:scale-105 border border-transparent hover:border-indigo-300 cursor-pointer">
+    <div className=" shadow-md rounded-xl p-6 mb-6 transform transition-transform duration-300 hover:shadow-2xl hover:scale-105 border border-transparent hover:border-indigo-300 cursor-pointer">
       <img
         src={productImage}
         alt={productName}

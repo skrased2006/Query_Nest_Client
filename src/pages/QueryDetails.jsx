@@ -9,6 +9,7 @@ const QueryDetails = () => {
   const { id } = useParams();
   const { user } = useContext(AuthContext);
   const singleQuery = useLoaderData();
+ 
 
   const [recommendations, setRecommendations] = useState([]);
 
@@ -25,6 +26,7 @@ const QueryDetails = () => {
     e.preventDefault();
     const form = e.target;
     const formData = Object.fromEntries(new FormData(form).entries());
+    console.log( formData);
 
     const recommendation = {
       ...formData,
@@ -33,6 +35,7 @@ const QueryDetails = () => {
       queryTitle: singleQuery.queryTitle,
       userEmail: singleQuery.userEmail,
       userName: singleQuery.userName,
+      myProduct:singleQuery.productName,
       timestamp: new Date().toISOString(),
       recommenderEmail: user.email,
       recommenderName: user.name,
