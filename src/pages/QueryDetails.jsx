@@ -13,7 +13,7 @@ const QueryDetails = () => {
 
   useEffect(() => {
     if (singleQuery?._id) {
-      fetch(`http://localhost:3000/recommendation/${singleQuery._id}`)
+      fetch(`https://b11a11-server-side-skrased2006.vercel.app/recommendation/${singleQuery._id}`)
         .then(res => res.json())
         .then(data => setRecommendations(data))
         .catch(err => console.error(err));
@@ -40,7 +40,7 @@ const QueryDetails = () => {
     };
 
     try {
-      const res = await axios.post('http://localhost:3000/recommendation', recommendation);
+      const res = await axios.post('https://b11a11-server-side-skrased2006.vercel.app/recommendation', recommendation);
       if (res.data.insertedId || res.data.acknowledged) {
         Swal.fire({
           position: "top-end",

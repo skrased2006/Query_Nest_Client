@@ -18,7 +18,7 @@ const MyQuery = () => {
 
   useEffect(() => {
     if (user?.email) {
-   axios(`http://localhost:3000/queries/email/${user.email}`, {
+   axios(`https://b11a11-server-side-skrased2006.vercel.app/queries/email/${user.email}`, {
   headers: {
     authorization: `Bearer ${user.accessToken}`
   }

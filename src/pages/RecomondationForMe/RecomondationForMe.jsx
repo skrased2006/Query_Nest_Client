@@ -21,7 +21,7 @@ const RecommendationsForMe = () => {
 
       try {
         const response = await fetch(
-          `http://localhost:3000/recommendations-for-me?email=${user.email}`,
+          `https://b11a11-server-side-skrased2006.vercel.app/recommendations-for-me?email=${user.email}`,
           {
             headers: {
               authorization: `Bearer ${user.accessToken}`,

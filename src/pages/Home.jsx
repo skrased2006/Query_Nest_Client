@@ -6,21 +6,32 @@ import Testimonials from './testimonials';
 import ExtraSection from './ExtraSection/ExtraSection';
 import Newsletter from './Newsletter/Newsletter';
 
-const sectionVariants = {
-  hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' } },
+// Variants for sections
+const fadeUp = {
+  hidden: { opacity: 0, y: 50 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: 'easeOut' } },
+};
+
+const fadeLeft = {
+  hidden: { opacity: 0, x: -50 },
+  visible: { opacity: 1, x: 0, transition: { duration: 0.8, ease: 'easeOut' } },
+};
+
+const fadeRight = {
+  hidden: { opacity: 0, x: 50 },
+  visible: { opacity: 1, x: 0, transition: { duration: 0.8, ease: 'easeOut' } },
 };
 
 const Home = () => {
   return (
-    <div className="space-y-16"> {/* Adds equal spacing between sections */}
+    <div className="space-y-20">
       
       {/* Slider / Hero */}
       <motion.div
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, amount: 0.3 }}
-        variants={sectionVariants}
+        viewport={{ once: true, amount: 0.2 }}
+        variants={fadeUp}
       >
         <Slider />
       </motion.div>
@@ -29,8 +40,8 @@ const Home = () => {
       <motion.div
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, amount: 0.3 }}
-        variants={sectionVariants}
+        viewport={{ once: true, amount: 0.2 }}
+        variants={fadeLeft}
         transition={{ delay: 0.2 }}
         className="px-4"
       >
@@ -41,9 +52,9 @@ const Home = () => {
       <motion.div
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, amount: 0.3 }}
-        variants={sectionVariants}
-        transition={{ delay: 0.4 }}
+        viewport={{ once: true, amount: 0.2 }}
+        variants={fadeRight}
+        transition={{ delay: 0.3 }}
         className="px-4"
       >
         <Testimonials />
@@ -53,8 +64,8 @@ const Home = () => {
       <motion.div
         initial="hidden"
         whileInView="visible"
-        viewport={{ once: true, amount: 0.3 }}
-        variants={sectionVariants}
+        viewport={{ once: true, amount: 0.2 }}
+        variants={fadeLeft}
         transition={{ delay: 0.4 }}
         className="px-4"
       >
@@ -62,10 +73,16 @@ const Home = () => {
       </motion.div>
 
       {/* Newsletter */}
-      <div className="px-4">
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.2 }}
+        variants={fadeUp}
+        transition={{ delay: 0.5 }}
+        className="px-4"
+      >
         <Newsletter />
-      </div>
-
+      </motion.div>
     </div>
   );
 };
