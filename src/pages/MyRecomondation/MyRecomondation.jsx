@@ -41,7 +41,7 @@ const MyRecommendation = () => {
     });
 
     if (confirm.isConfirmed) {
-      fetch(`https://my-query-server.vercel.app/my-recommendations/${id}`, {
+      fetch(`http://localhost:3000/my-recommendations/${id}`, {
         method: 'DELETE',
       })
         .then((res) => res.json())
