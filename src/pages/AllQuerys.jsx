@@ -7,10 +7,11 @@ import { Fade, Zoom, Slide } from 'react-awesome-reveal';
 
 const AllQuerys = () => {
   const data = useLoaderData();
-  console.log("all query",data);
+  console.log("all query", data);
   const [loading, setLoading] = useState(true);
   const [searchText, setSearchText] = useState('');
-  const [columns, setColumns] = useState(3); 
+  const [columns, setColumns] = useState(3);
+  const [sortBy, setSortBy] = useState('date'); // Sorting criteria state
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -20,10 +21,19 @@ const AllQuerys = () => {
     return () => clearTimeout(timer);
   }, []);
 
-  const sortedData = [...data].sort(
-    (a, b) => new Date(b.date) - new Date(a.date)
-  );
+  // Sort data based on selected sortBy
+  const sortedData = [...data].sort((a, b) => {
+    if (sortBy === 'date') {
+      return new Date(b.date) - new Date(a.date);
+    } else if (sortBy === 'name') {
+      return a.productName.localeCompare(b.productName);
+    } else if (sortBy === 'recommendation') {
+      return (b.recommendationCount ?? 0) - (a.recommendationCount ?? 0);
+    }
+    return 0;
+  });
 
+  // Filter after sorting
   const filteredData = sortedData.filter((item) =>
     item.productName.toLowerCase().includes(searchText.toLowerCase())
   );
@@ -58,13 +68,28 @@ const AllQuerys = () => {
         />
       </Slide>
 
+      {/* Sorting dropdown */}
+      <div className="flex justify-center mb-6">
+        <select
+          value={sortBy}
+          onChange={(e) => setSortBy(e.target.value)}
+          className="border rounded px-4 py-2"
+        >
+          <option value="date">Sort by Date</option>
+          <option value="name">Sort by Name</option>
+          <option value="recommendation">Sort by Recommendations</option>
+        </select>
+      </div>
+
       {/* Grid layout toggle buttons */}
       <div className="flex justify-center gap-3 mb-8">
         {[2, 3, 4].map((col) => (
           <button
             key={col}
             onClick={() => setColumns(col)}
-            className={`px-4 py-2 rounded ${columns === col ? 'bg-indigo-600 text-white' : 'bg-gray-200 text-black'}`}
+            className={`px-4 py-2 rounded ${
+              columns === col ? 'bg-indigo-600 text-white' : 'bg-gray-200 text-black'
+            }`}
           >
             {col} Col
           </button>
@@ -72,7 +97,11 @@ const AllQuerys = () => {
       </div>
 
       {filteredData.length > 0 ? (
-        <div className={`grid gap-6 ${columns === 2 ? 'grid-cols-2' : columns === 3 ? 'grid-cols-3' : 'grid-cols-4'}`}>
+        <div
+          className={`grid gap-6 ${
+            columns === 2 ? 'grid-cols-2' : columns === 3 ? 'grid-cols-3' : 'grid-cols-4'
+          }`}
+        >
           {filteredData.map((singleQuery, index) => (
             <Zoom triggerOnce delay={index * 100} key={singleQuery._id}>
               <SingleQuery singleQuery={singleQuery} />
@@ -81,9 +110,7 @@ const AllQuerys = () => {
         </div>
       ) : (
         <Fade>
-          <p className="text-center text-gray-500 text-lg">
-            No matching queries found.
-          </p>
+          <p className="text-center text-gray-500 text-lg">No matching queries found.</p>
         </Fade>
       )}
     </div>
@@ -91,3 +118,4 @@ const AllQuerys = () => {
 };
 
 export default AllQuerys;
+
