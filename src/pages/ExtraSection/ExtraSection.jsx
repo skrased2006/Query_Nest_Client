@@ -27,7 +27,7 @@ const features = [
 
 const ExtraSection = () => {
   return (
-    <section className="bg-gradient-to-r from-green-400 to-blue-500 py-16 px-6 text-white">
+    <section className="bg-gradient-to-r from-pink-300 to-blue-400 py-16 px-6 text-white">
       <div className="max-w-6xl mx-auto text-center mb-12">
         <h2 className="text-4xl font-bold mb-4 drop-shadow-lg">
            <Typewriter

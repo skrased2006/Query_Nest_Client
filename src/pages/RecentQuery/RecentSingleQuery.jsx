@@ -3,54 +3,57 @@ import { FaRegComment } from 'react-icons/fa';
 import { useNavigate } from 'react-router';
 
 const RecentSingleQuery = ({ recentSingleQuery }) => {
-    const {
-        _id,
-        productBrand,
-        productName,
-        productImage,
-        queryTitle,
-        date,
-        recommendationCount,  
-    } = recentSingleQuery;
+  const {
+    _id,
+    productBrand,
+    productName,
+    productImage,
+    queryTitle,
+    date,
+    recommendationCount,
+  } = recentSingleQuery;
 
-    const navigate = useNavigate();
+  const navigate = useNavigate();
 
-    const handleRecommendClick = () => {
-        navigate(`/query/${_id}`);
-    };
+  const handleRecommendClick = () => {
+    navigate(`/query/${_id}`);
+  };
 
+  return (
+    <div className="bg-gradient-to-tr from-pink-50 via-purple-50 to-indigo-50 shadow-md rounded-xl p-6 mb-6 transform transition-transform duration-300 hover:shadow-2xl hover:scale-105 border border-transparent hover:border-indigo-300 cursor-pointer">
+      <img
+        src={productImage}
+        alt={productName}
+        className="w-full h-40 object-cover mb-5 rounded-lg border border-gray-300"
+      />
 
-    return (
-        <div className="bg-white shadow-md rounded-lg p-4 mb-5 hover:shadow-lg transition-shadow">
-            <img
-                src={productImage}
-                alt={productName}
-                className="w-full h-32 object-cover mb-4 rounded"
-            />
+      <h3 className="text-xl font-semibold text-indigo-800 mb-2">{productName}</h3>
+      <p className="text-sm text-indigo-600 mb-1">
+        <strong className="text-indigo-700">Brand:</strong> {productBrand}
+      </p>
+      <p className="text-indigo-700 mb-3 text-sm line-clamp-2">
+        <strong className="text-indigo-700">Query:</strong> {queryTitle}
+      </p>
+      <p className="text-xs text-indigo-400 mb-4 italic">
+        {new Date(date).toLocaleString()}
+      </p>
 
-            <h3 className="text-lg font-semibold text-green-700 mb-1">{productName}</h3>
-             <p className="text-sm text-gray-500 mb-1"><strong>Brand: </strong>     {productBrand}</p>
-            <p className="text-gray-700 mb-2 text-sm line-clamp-2"><strong>Query :</strong> {queryTitle}</p>
-           <p className="text-xs text-gray-400 mb-3">Date: {new Date(date).toLocaleString()}</p>
-
-            <div className="flex justify-between items-center text-gray-600 mb-4">
- 
-      <div className="flex items-center gap-1 text-sm">
-      <FaRegComment className="text-blue-600" />
-      <span>{recommendationCount ?? 0}</span>
-   </div>
-   
-  
-   <button
-    onClick={handleRecommendClick}
-    className="bg-blue-600 text-white text-sm font-medium px-4 py-1.5 rounded-md hover:bg-blue-700 transition-colors duration-200"
-  >
-    Recommend
-  </button>
-</div>
-
+      <div className="flex justify-between items-center text-indigo-600">
+        <div className="flex items-center gap-2 text-sm">
+          <FaRegComment className="text-indigo-400" />
+          <span className="font-medium text-indigo-700">{recommendationCount ?? 0}</span>
         </div>
-    );
+
+        <button
+          onClick={handleRecommendClick}
+          className="bg-indigo-600 hover:bg-indigo-800 text-white text-sm font-semibold px-5 py-2 rounded-lg shadow-md transition-colors duration-300"
+          aria-label={`View recommendations for ${productName}`}
+        >
+          Recommend
+        </button>
+      </div>
+    </div>
+  );
 };
 
 export default RecentSingleQuery;

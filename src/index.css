@@ -8,9 +8,6 @@
 }
 
 body {
-  background-color: #f8f6f9;
-  margin: 0;
-  padding: 0;
-  min-height: 100vh;
+  background-color: #f0f4f8; /* হালকা নীলাভ ধরণ */
+  color: #333; /* লেখার রঙ */
 }
-
