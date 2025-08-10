@@ -46,7 +46,7 @@ const RecentSingleQuery = ({ recentSingleQuery }) => {
 
         <button
           onClick={handleRecommendClick}
-          className="bg-indigo-600 hover:bg-indigo-800 text-white text-sm font-semibold px-5 py-2 rounded-lg shadow-md transition-colors duration-300"
+          className="bg-indigo-600 hover:bg-indigo-800 text-white text-sm font-semibold px-5 py-2 rounded-lg shadow-md transition-colors duration-300 cursor-pointer"
           aria-label={`View recommendations for ${productName}`}
         >
           Recommend

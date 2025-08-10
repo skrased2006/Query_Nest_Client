@@ -29,7 +29,7 @@ const QueryDetails = () => {
     const recommendation = {
       ...formData,
       queryId: singleQuery._id,
-      recommendedProductId: singleQuery._id, 
+      recommendedProductId: singleQuery._id,
       queryTitle: singleQuery.queryTitle,
       userEmail: singleQuery.userEmail,
       userName: singleQuery.userName,
@@ -63,83 +63,91 @@ const QueryDetails = () => {
   };
 
   return (
-    <div className="max-w-3xl mx-auto bg-white shadow-lg rounded-xl p-6 my-8">
-      <img
-        src={singleQuery.productImage}
-        alt={singleQuery.productName}
-        className="w-full h-56 object-cover mb-6 rounded-lg"
-      />
-      <h2 className="text-3xl font-bold text-green-700 mb-2">{singleQuery.productName}</h2>
-      <p className="text-sm text-gray-500 mb-4">Brand: {singleQuery.productBrand}</p>
+    <div className="max-w-4xl mx-auto bg-white shadow-lg rounded-xl p-8 my-12">
+      {/* Product info and image side by side */}
+      <div className="flex flex-col md:flex-row items-start md:items-center gap-8 mb-8">
+        <img
+          src={singleQuery.productImage}
+          alt={singleQuery.productName}
+          className="w-full md:w-1/3 h-48 object-cover rounded-lg border border-gray-300 shadow-sm"
+        />
+        <div className="flex-1">
+          <h2 className="text-3xl font-bold text-green-700 mb-2">{singleQuery.productName}</h2>
+          <p className="text-sm text-gray-600 mb-1"><strong>Brand:</strong> {singleQuery.productBrand}</p>
 
-      <section className="mb-6">
-        <h3 className="text-xl font-semibold text-gray-800 mb-1">Query:</h3>
-        <p className="text-gray-700">{singleQuery.queryTitle}</p>
-      </section>
+          <div className="mt-4">
+            <h3 className="text-xl font-semibold text-gray-800 mb-1">Query:</h3>
+            <p className="text-gray-700 leading-relaxed">{singleQuery.queryTitle}</p>
+          </div>
 
-      <section className="mb-6">
-        <h3 className="text-xl font-semibold text-gray-800 mb-1">Boycott Reason:</h3>
-        <p className="text-gray-600 text-sm">{singleQuery.boycottReason}</p>
-      </section>
+          <div className="mt-4">
+            <h3 className="text-xl font-semibold text-gray-800 mb-1">Boycott Reason:</h3>
+            <p className="text-gray-600 text-sm leading-relaxed">{singleQuery.boycottReason}</p>
+          </div>
+        </div>
+      </div>
 
-      <section className="flex items-center gap-4 mb-6">
+      {/* User info */}
+      <div className="flex items-center gap-4 mb-10 border-t border-b border-gray-200 py-4">
         <img
           src={singleQuery?.userPhoto}
           alt={singleQuery.userName}
-          className="w-12 h-12 rounded-full object-cover border border-gray-300"
+          className="w-14 h-14 rounded-full object-cover border border-gray-300 shadow"
         />
         <div>
-          <p className="font-medium text-gray-900">{singleQuery.userName}</p>
+          <p className="font-semibold text-gray-900">{singleQuery.userName}</p>
           <p className="text-xs text-gray-500">{singleQuery.userEmail}</p>
-          <p className="text-xs text-gray-400 mt-1">
-            Date: {new Date(singleQuery.date).toLocaleString()}
-          </p>
+          <p className="text-xs text-gray-400 mt-1">Date: {new Date(singleQuery.date).toLocaleString()}</p>
         </div>
-      </section>
+      </div>
 
-      <section className="mb-10">
-        <h3 className="text-2xl font-semibold mb-4">Add a Recommendation</h3>
-        <form onSubmit={handleRecommend} className="space-y-4">
-          <input
-            type="text"
-            name="recommendationTitle"
-            placeholder="Recommendation Title"
-            required
-            className="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
-          />
-          <input
-            type="text"
-            name="recommendedProductName"
-            placeholder="Recommended Product Name"
-            required
-            className="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
-          />
-          <input
-            type="text"
-            name="recommendedProductImage"
-            placeholder="Recommended Product Image URL"
-            required
-            className="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
-          />
-          <textarea
-            name="recommendationReason"
-            placeholder="Recommendation Reason"
-            required
-            className="w-full p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
-            rows={4}
-          ></textarea>
-          <button
-            type="submit"
-            className="bg-blue-600 text-white px-5 py-2 rounded hover:bg-blue-700 transition"
-          >
-            Add Recommendation
-          </button>
-        </form>
-      </section>
+      {/* Recommendation form and list */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
+        <section className="">
+          <h3 className="text-2xl font-semibold mb-6">Add a Recommendation</h3>
+          <form onSubmit={handleRecommend} className="space-y-5">
+            <input
+              type="text"
+              name="recommendationTitle"
+              placeholder="Recommendation Title"
+              required
+              className="w-full p-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+            <input
+              type="text"
+              name="recommendedProductName"
+              placeholder="Recommended Product Name"
+              required
+              className="w-full p-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+            <input
+              type="text"
+              name="recommendedProductImage"
+              placeholder="Recommended Product Image URL"
+              required
+              className="w-full p-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+            <textarea
+              name="recommendationReason"
+              placeholder="Recommendation Reason"
+              required
+              rows={5}
+              className="w-full p-3 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 resize-none"
+            ></textarea>
+            <button
+              type="submit"
+              className="w-full bg-blue-600 text-white py-3 rounded-md hover:bg-blue-700 transition"
+            >
+              Add Recommendation
+            </button>
+          </form>
+        </section>
 
-      <section>
-        <ProductRecommendations recommendations={recommendations} />
-      </section>
+        <section>
+          <h3 className="text-2xl font-semibold mb-6">Recommendations</h3>
+          <ProductRecommendations recommendations={recommendations} />
+        </section>
+      </div>
     </div>
   );
 };
