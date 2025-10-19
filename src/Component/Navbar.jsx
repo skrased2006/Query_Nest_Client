@@ -24,156 +24,219 @@ const Navbar = () => {
   };
 
   const navLinkClass = ({ isActive }) =>
-    isActive ? "text-indigo-600" : "hover:text-indigo-600 transition";
+    isActive 
+      ? "text-white bg-indigo-700 px-3 py-2 rounded-lg font-medium transition-all duration-200" 
+      : "text-gray-700 hover:text-indigo-600 hover:bg-indigo-50 px-3 py-2 rounded-lg font-medium transition-all duration-200";
 
   return (
-    <header className="bg-white shadow-md sticky top-0 z-50">
-      <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between">
-      
-        <Link
-          to="/"
-          className="flex items-center gap-2 text-indigo-600 font-bold text-xl"
-        >
-          <img
-            src="https://i.ibb.co/HDTgyWMD/23e4f9af-77f8-4d78-bbd2-57abfbc2d183.jpg"
-            alt="QueryNest Logo"
-            className="w-8 h-8 rounded-xl"
-          />
-          <span>QueryNest</span>
-        </Link>
-
-        
-        <button
-          onClick={() => setIsMenuOpen(!isMenuOpen)}
-          className="md:hidden text-gray-700 focus:outline-none"
-          aria-label="Toggle menu"
-        >
-          {isMenuOpen ? (
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M6 18L18 6M6 6l12 12"
-              />
-            </svg>
-          ) : (
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M4 6h16M4 12h16M4 18h16"
-              />
-            </svg>
-          )}
-        </button>
-
-        
-        <nav
-          className={`flex-col md:flex-row md:flex items-center gap-6 text-gray-800 font-medium mx-auto absolute md:static top-full left-0 right-0 bg-white md:bg-transparent md:justify-center transition-all duration-300 md:transition-none z-40 ${
-            isMenuOpen ? "flex" : "hidden"
-          } md:flex`}
-        >
-          <NavLink to="/" className={navLinkClass} onClick={() => setIsMenuOpen(false)}>
-            Home
-          </NavLink>
-          <NavLink
-            to="/allQuery"
-            className={navLinkClass}
-            onClick={() => setIsMenuOpen(false)}
+    <header className="bg-white shadow-lg border-b border-gray-100 sticky top-0 z-50">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-16">
+          
+          {/* Logo Section */}
+          <Link
+            to="/"
+            className="flex items-center gap-3 group"
           >
-            Queries
-          </NavLink>
+            <div className="relative">
+              <img
+                src="https://i.ibb.co/HDTgyWMD/23e4f9af-77f8-4d78-bbd2-57abfbc2d183.jpg"
+                alt="QueryNest Logo"
+                className="w-10 h-10 rounded-xl transform group-hover:scale-105 transition-transform duration-200 shadow-md"
+              />
+            </div>
+            <span className="text-2xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
+              QueryNest
+            </span>
+          </Link>
 
-          {user && (
-            <>
-              <NavLink
-                to="/recommendations-for-me"
-                className={navLinkClass}
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Recommendations For Me
-              </NavLink>
+          {/* Desktop Navigation */}
+          <nav className="hidden md:flex items-center space-x-1">
+            <NavLink to="/" className={navLinkClass}>
+              Home
+            </NavLink>
+            <NavLink to="/allQuery" className={navLinkClass}>
+              Queries
+            </NavLink>
 
-              <NavLink
-                to="/myQuery"
-                className={navLinkClass}
-                onClick={() => setIsMenuOpen(false)}
-              >
-                My Queries
-              </NavLink>
+            {user && (
+              <>
+                <NavLink to="/recommendations-for-me" className={navLinkClass}>
+                  For Me
+                </NavLink>
+                <NavLink to="/myQuery" className={navLinkClass}>
+                  My Queries
+                </NavLink>
+                <NavLink to="/my-recommendations" className={navLinkClass}>
+                  My Recommendations
+                </NavLink>
+              </>
+            )}
+          </nav>
 
-              <NavLink
-                to="/my-recommendations"
-                className={navLinkClass}
-                onClick={() => setIsMenuOpen(false)}
-              >
-                My Recommendations
-              </NavLink>
-            </>
-          )}
-
-          <div className="md:hidden mt-2">
+          {/* User Actions */}
+          <div className="hidden md:flex items-center space-x-4">
             {user ? (
-              <button
-                onClick={() => {
-                  handleLogout();
-                  setIsMenuOpen(false);
-                }}
-                className="text-white btn font-semibold bg-red-500 w-full py-2 rounded"
-              >
-                Logout
-              </button>
+              <div className="flex items-center space-x-4">
+                <div className="flex items-center space-x-2">
+                  <div className="w-8 h-8 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-full flex items-center justify-center">
+                    <span className="text-white text-sm font-medium">
+                      {user.email?.charAt(0).toUpperCase()}
+                    </span>
+                  </div>
+                  <span className="text-gray-700 text-sm font-medium max-w-24 truncate">
+                    {user.email}
+                  </span>
+                </div>
+                <button
+                  onClick={handleLogout}
+                  className="px-4 py-2 bg-gradient-to-r from-red-500 to-red-600 text-white font-semibold rounded-lg hover:from-red-600 hover:to-red-700 transition-all duration-200 shadow-md hover:shadow-lg transform hover:-translate-y-0.5"
+                >
+                  Logout
+                </button>
+              </div>
             ) : (
               <NavLink
                 to="/login"
-                onClick={() => setIsMenuOpen(false)}
                 className={({ isActive }) =>
                   isActive
-                    ? "px-4 py-2 rounded-md bg-indigo-700 text-white font-semibold block text-center"
-                    : "px-4 py-2 rounded-md bg-indigo-600 text-white font-semibold hover:bg-indigo-700 transition block text-center"
+                    ? "px-6 py-2.5 rounded-lg bg-gradient-to-r from-indigo-700 to-purple-700 text-white font-semibold shadow-md"
+                    : "px-6 py-2.5 rounded-lg bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-semibold hover:from-indigo-700 hover:to-purple-700 transition-all duration-200 shadow-md hover:shadow-lg transform hover:-translate-y-0.5"
                 }
               >
                 Login
               </NavLink>
             )}
           </div>
-        </nav>
 
-      
-        <div className="hidden md:block">
-          {user ? (
-            <button
-              onClick={handleLogout}
-              className="text-white btn font-semibold bg-red-500 px-4 py-2 rounded"
+          {/* Mobile menu button */}
+          <button
+            onClick={() => setIsMenuOpen(!isMenuOpen)}
+            className="md:hidden p-2 rounded-lg text-gray-700 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition-all duration-200"
+            aria-label="Toggle menu"
+          >
+            {isMenuOpen ? (
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M6 18L18 6M6 6l12 12"
+                />
+              </svg>
+            ) : (
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M4 6h16M4 12h16M4 18h16"
+                />
+              </svg>
+            )}
+          </button>
+        </div>
+
+        {/* Mobile Navigation */}
+        <div
+          className={`md:hidden transition-all duration-300 ease-in-out overflow-hidden ${
+            isMenuOpen ? "max-h-96 opacity-100 py-4" : "max-h-0 opacity-0"
+          }`}
+        >
+          <nav className="flex flex-col space-y-3 pb-4 border-t border-gray-200 pt-4">
+            <NavLink 
+              to="/" 
+              className={navLinkClass} 
+              onClick={() => setIsMenuOpen(false)}
             >
-              Logout
-            </button>
-          ) : (
-            <NavLink
-              to="/login"
-              className={({ isActive }) =>
-                isActive
-                  ? "px-4 py-2 rounded-md bg-indigo-700 text-white font-semibold"
-                  : "px-4 py-2 rounded-md bg-indigo-600 text-white font-semibold hover:bg-indigo-700 transition"
-              }
-            >
-              Login
+              Home
             </NavLink>
-          )}
+            <NavLink
+              to="/allQuery"
+              className={navLinkClass}
+              onClick={() => setIsMenuOpen(false)}
+            >
+              Queries
+            </NavLink>
+
+            {user && (
+              <>
+                <NavLink
+                  to="/recommendations-for-me"
+                  className={navLinkClass}
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  Recommendations For Me
+                </NavLink>
+                <NavLink
+                  to="/myQuery"
+                  className={navLinkClass}
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  My Queries
+                </NavLink>
+                <NavLink
+                  to="/my-recommendations"
+                  className={navLinkClass}
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  My Recommendations
+                </NavLink>
+                
+                {/* User info in mobile */}
+                <div className="flex items-center space-x-3 px-3 py-4 bg-gray-50 rounded-lg mt-2">
+                  <div className="w-10 h-10 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-full flex items-center justify-center">
+                    <span className="text-white font-medium">
+                      {user.email?.charAt(0).toUpperCase()}
+                    </span>
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <p className="text-sm font-medium text-gray-900 truncate">
+                      {user.email}
+                    </p>
+                  </div>
+                </div>
+              </>
+            )}
+
+            <div className="pt-2">
+              {user ? (
+                <button
+                  onClick={() => {
+                    handleLogout();
+                    setIsMenuOpen(false);
+                  }}
+                  className="w-full px-4 py-3 bg-gradient-to-r from-red-500 to-red-600 text-white font-semibold rounded-lg hover:from-red-600 hover:to-red-700 transition-all duration-200 shadow-md"
+                >
+                  Logout
+                </button>
+              ) : (
+                <NavLink
+                  to="/login"
+                  onClick={() => setIsMenuOpen(false)}
+                  className={({ isActive }) =>
+                    isActive
+                      ? "w-full block px-4 py-3 rounded-lg bg-gradient-to-r from-indigo-700 to-purple-700 text-white font-semibold text-center shadow-md"
+                      : "w-full block px-4 py-3 rounded-lg bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-semibold hover:from-indigo-700 hover:to-purple-700 transition-all duration-200 text-center shadow-md hover:shadow-lg"
+                  }
+                >
+                  Login
+                </NavLink>
+              )}
+            </div>
+          </nav>
         </div>
       </div>
     </header>

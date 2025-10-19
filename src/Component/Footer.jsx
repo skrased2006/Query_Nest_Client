@@ -1,93 +1,258 @@
 import { Link } from "react-router";
+import { motion } from "framer-motion";
+import { FaFacebook, FaInstagram, FaTwitter, FaLinkedin, FaHeart, FaArrowUp, FaMapMarkerAlt, FaPhone, FaEnvelope, FaClock } from "react-icons/fa";
 
 const Footer = () => {
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const footerVariants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.8,
+        ease: "easeOut",
+        staggerChildren: 0.2
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.6 }
+    }
+  };
+
   return (
-    <footer className="bg-gray-900 text-gray-300 py-10 ">
-      <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-8">
+    <motion.footer 
+      className="relative bg-gradient-to-br from-gray-900 via-slate-900 to-gray-950 text-gray-300 pt-16 pb-8 overflow-hidden"
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true }}
+      variants={footerVariants}
+    >
+      {/* Background Elements */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute -top-20 -right-20 w-60 h-60 bg-blue-900 rounded-full mix-blend-multiply filter blur-3xl opacity-10"></div>
+        <div className="absolute -bottom-20 -left-20 w-60 h-60 bg-purple-900 rounded-full mix-blend-multiply filter blur-3xl opacity-10"></div>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 h-80 bg-indigo-900 rounded-full mix-blend-multiply filter blur-3xl opacity-5"></div>
+      </div>
 
-      
-        <div className="flex flex-col items-start space-y-2">
-          <Link to="/" className="flex items-center gap-3 text-indigo-400 font-extrabold text-2xl">
-            <img
-              src="https://i.ibb.co/HDTgyWMD/23e4f9af-77f8-4d78-bbd2-57abfbc2d183.jpg"
-              alt="QueryNest Logo"
-              className="w-10 h-10 rounded-xl"
-            />
-            <span>QueryNest</span>
-          </Link>
-          <p className="text-gray-400 max-w-xs">
-            Your one-stop platform for sharing and discovering quality queries and personalized recommendations.
-          </p>
-        </div>
-
-      
-        <div>
-          <h3 className="text-indigo-400 font-semibold mb-4">Quick Links</h3>
-          <ul className="space-y-2 text-gray-300">
-            <li><Link to="/" className="hover:text-indigo-400 transition">Home</Link></li>
-            <li><Link to="/allQuery" className="hover:text-indigo-400 transition">Queries</Link></li>
-            <li><Link to="/recommendations-for-me" className="hover:text-indigo-400 transition">Recommendations</Link></li>
-            <li><Link to="/login" className="hover:text-indigo-400 transition">Login</Link></li>
-          </ul>
-        </div>
-
-       
-        <div>
-          <h3 className="text-indigo-400 font-semibold mb-4">Contact Us</h3>
-          <p>Email: <a href="mailto:support@querynest.com" className="hover:text-indigo-400 transition">support@querynest.com</a></p>
-          <p>Phone: <a href="tel:+1234567890" className="hover:text-indigo-400 transition">+1 (234) 567-890</a></p>
-          <p className="mt-4 text-gray-400 text-sm">Mon - Fri: 9 AM - 6 PM</p>
-        </div>
-
-       
-        <div>
-          <h3 className="text-indigo-400 font-semibold mb-4">Follow Us</h3>
-          <div className="flex space-x-6">
-            <a
-              href="https://www.facebook.com/profile.php?id=61557281361139"
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Facebook"
-              className="text-gray-300 hover:text-indigo-400 transition"
-              title="Facebook"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-7 w-7"
-                fill="currentColor"
-                viewBox="0 0 24 24"
+      <div className="relative max-w-7xl mx-auto px-6 lg:px-8">
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-8 lg:gap-12 mb-12">
+          {/* Brand Section */}
+          <motion.div 
+            className="flex flex-col items-start space-y-4"
+            variants={itemVariants}
+          >
+            <Link to="/" className="flex items-center gap-3 group">
+              <div className="relative">
+                <img
+                  src="https://i.ibb.co/HDTgyWMD/23e4f9af-77f8-4d78-bbd2-57abfbc2d183.jpg"
+                  alt="QueryNest Logo"
+                  className="w-12 h-12 rounded-xl transform group-hover:scale-110 transition-transform duration-300 shadow-lg"
+                />
+                <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-blue-500 to-purple-600 opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
+              </div>
+              <span className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+                QueryNest
+              </span>
+            </Link>
+            <p className="text-gray-400 max-w-xs leading-relaxed text-sm">
+              Your intelligent platform for sharing queries and discovering personalized product recommendations through community wisdom.
+            </p>
+            <div className="flex items-center gap-2 text-xs text-gray-500 mt-2">
+              <span>Made with</span>
+              <motion.div
+                animate={{ scale: [1, 1.2, 1] }}
+                transition={{ duration: 1.5, repeat: Infinity }}
               >
-                <path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 5.006 3.657 9.128 8.438 9.878v-6.987h-2.54v-2.89h2.54V9.845c0-2.507 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.466h-1.26c-1.243 0-1.63.772-1.63 1.562v1.875h2.773l-.443 2.89h-2.33v6.987C18.343 21.128 22 17.006 22 12z" />
-              </svg>
-            </a>
+                <FaHeart className="text-red-500" />
+              </motion.div>
+              <span>for the community</span>
+            </div>
+          </motion.div>
 
-           <a
-  href="https://www.instagram.com/sksayem2006/"
-  target="_blank"
-  rel="noopener noreferrer"
-  aria-label="Instagram"
-  className="text-gray-300 hover:text-pink-500 transition"
-  title="Instagram"
->
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    className="h-7 w-7"
-    fill="currentColor"
-    viewBox="0 0 24 24"
-  >
-    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.366.062 2.633.336 3.608 1.31.975.975 1.248 2.242 1.31 3.608.058 1.266.069 1.646.069 4.849s-.012 3.584-.069 4.85c-.062 1.366-.335 2.633-1.31 3.608-.975.975-2.242 1.248-3.608 1.31-1.266.058-1.646.069-4.85.069s-3.584-.012-4.85-.069c-1.366-.062-2.633-.335-3.608-1.31-.975-.975-1.248-2.242-1.31-3.608C2.175 15.584 2.163 15.204 2.163 12s.012-3.584.07-4.85c.062-1.366.335-2.633 1.31-3.608.975-.975 2.242-1.248 3.608-1.31C8.416 2.175 8.796 2.163 12 2.163zm0-2.163C8.741 0 8.332.012 7.052.07 5.765.128 4.608.388 3.555 1.44c-1.053 1.053-1.313 2.21-1.371 3.497C2.012 6.668 2 7.077 2 10.336v3.327c0 3.259.012 3.668.07 4.948.058 1.287.318 2.444 1.371 3.497 1.053 1.053 2.21 1.313 3.497 1.371C8.332 23.988 8.741 24 12 24s3.668-.012 4.948-.07c1.287-.058 2.444-.318 3.497-1.371 1.053-1.053 1.313-2.21 1.371-3.497.058-1.28.07-1.689.07-4.948v-3.327c0-3.259-.012-3.668-.07-4.948-.058-1.287-.318-2.444-1.371-3.497C19.392.388 18.235.128 16.948.07 15.668.012 15.259 0 12 0zm0 5.838A6.162 6.162 0 0 0 5.838 12 6.162 6.162 0 0 0 12 18.162 6.162 6.162 0 0 0 18.162 12 6.162 6.162 0 0 0 12 5.838zm0 10.162A4 4 0 1 1 16 12a4 4 0 0 1-4 4zm6.406-11.845a1.44 1.44 0 1 1-2.88 0 1.44 1.44 0 0 1 2.88 0z" />
-  </svg>
-</a>
+          {/* Quick Links */}
+          <motion.div variants={itemVariants}>
+            <h3 className="text-lg font-semibold text-white mb-6 flex items-center gap-2">
+              <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+              Quick Links
+            </h3>
+            <ul className="space-y-3">
+              {[
+                { name: 'Home', path: '/' },
+                { name: 'All Queries', path: '/allQuery' },
+                { name: 'My Queries', path: '/myQuery' },
+                { name: 'For Me', path: '/recommendations-for-me' },
+                { name: 'My Recommendations', path: '/my-recommendations' },
+                { name: 'Add Query', path: '/addQuery' }
+              ].map((link) => (
+                <li key={link.name}>
+                  <Link 
+                    to={link.path} 
+                    className="text-gray-400 hover:text-blue-400 transition-all duration-300 hover:translate-x-2 flex items-center gap-2 group"
+                  >
+                    <div className="w-1 h-1 bg-gray-600 rounded-full group-hover:bg-blue-400 transition-colors duration-300"></div>
+                    {link.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </motion.div>
 
-          </div>
+          {/* Contact Info */}
+          <motion.div variants={itemVariants}>
+            <h3 className="text-lg font-semibold text-white mb-6 flex items-center gap-2">
+              <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+              Contact Info
+            </h3>
+            <div className="space-y-4">
+              <div className="flex items-start gap-3 group">
+                <FaMapMarkerAlt className="text-green-400 mt-1 flex-shrink-0 group-hover:scale-110 transition-transform duration-300" />
+                <div>
+                  <p className="text-white text-sm font-medium">Location</p>
+                  <p className="text-gray-400 text-sm">Dhaka, Bangladesh</p>
+                </div>
+              </div>
+              <div className="flex items-start gap-3 group">
+                <FaPhone className="text-blue-400 mt-1 flex-shrink-0 group-hover:scale-110 transition-transform duration-300" />
+                <div>
+                  <p className="text-white text-sm font-medium">Phone</p>
+                  <p className="text-gray-400 text-sm">+880 1234-567890</p>
+                </div>
+              </div>
+              <div className="flex items-start gap-3 group">
+                <FaEnvelope className="text-purple-400 mt-1 flex-shrink-0 group-hover:scale-110 transition-transform duration-300" />
+                <div>
+                  <p className="text-white text-sm font-medium">Email</p>
+                  <a href="mailto:support@querynest.com" className="text-gray-400 text-sm hover:text-purple-400 transition-colors duration-300">
+                    support@querynest.com
+                  </a>
+                </div>
+              </div>
+              <div className="flex items-start gap-3 group">
+                <FaClock className="text-yellow-400 mt-1 flex-shrink-0 group-hover:scale-110 transition-transform duration-300" />
+                <div>
+                  <p className="text-white text-sm font-medium">Hours</p>
+                  <p className="text-gray-400 text-sm">Mon - Fri: 9AM - 6PM</p>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Social & Newsletter */}
+          <motion.div variants={itemVariants}>
+            <h3 className="text-lg font-semibold text-white mb-6 flex items-center gap-2">
+              <div className="w-2 h-2 bg-purple-500 rounded-full"></div>
+              Connect With Us
+            </h3>
+            <div className="space-y-4">
+              <p className="text-gray-400 text-sm">
+                Follow us on social media for updates and community highlights.
+              </p>
+              <div className="flex space-x-4">
+                {[
+                  { 
+                    icon: FaFacebook, 
+                    href: "https://www.facebook.com/profile.php?id=61557281361139", 
+                    color: "hover:text-blue-500",
+                    label: "Facebook"
+                  },
+                  { 
+                    icon: FaInstagram, 
+                    href: "https://www.instagram.com/sksayem2006/", 
+                    color: "hover:text-pink-500",
+                    label: "Instagram"
+                  },
+                  { 
+                    icon: FaTwitter, 
+                    href: "#", 
+                    color: "hover:text-blue-400",
+                    label: "Twitter"
+                  },
+                  { 
+                    icon: FaLinkedin, 
+                    href: "#", 
+                    color: "hover:text-blue-600",
+                    label: "LinkedIn"
+                  }
+                ].map((social) => (
+                  <motion.a
+                    key={social.label}
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={social.label}
+                    className={`w-10 h-10 bg-gray-800 rounded-xl flex items-center justify-center text-gray-400 transition-all duration-300 ${social.color} hover:bg-gray-700 hover:scale-110 shadow-lg`}
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    <social.icon className="text-lg" />
+                  </motion.a>
+                ))}
+              </div>
+              
+              {/* Quick Action */}
+              <div className="pt-4 border-t border-gray-800">
+                <p className="text-gray-400 text-sm mb-3">Need immediate help?</p>
+                <a 
+                  href="mailto:support@querynest.com" 
+                  className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white text-sm font-semibold rounded-lg hover:shadow-lg transition-all duration-300 transform hover:-translate-y-0.5"
+                >
+                  <FaEnvelope className="text-sm" />
+                  Contact Support
+                </a>
+              </div>
+            </div>
+          </motion.div>
         </div>
-      </div>
 
-     
-      <div className="mt-8 border-t border-gray-700 pt-4 text-center text-gray-500 text-sm">
-        &copy; {new Date().getFullYear()} QueryNest Ltd. All rights reserved.
+        {/* Bottom Bar */}
+        <motion.div 
+          className="border-t border-gray-800 pt-8 flex flex-col lg:flex-row items-center justify-between space-y-4 lg:space-y-0"
+          variants={itemVariants}
+        >
+          <div className="text-center lg:text-left">
+            <p className="text-gray-500 text-sm">
+              &copy; {new Date().getFullYear()} <span className="text-blue-400 font-semibold">QueryNest Ltd.</span> All rights reserved.
+            </p>
+            <p className="text-gray-600 text-xs mt-1">
+              Building a smarter community through shared knowledge
+            </p>
+          </div>
+          
+          <div className="flex items-center gap-6 text-sm text-gray-500">
+            <Link to="/privacy" className="hover:text-blue-400 transition-colors duration-300">
+              Privacy Policy
+            </Link>
+            <Link to="/terms" className="hover:text-blue-400 transition-colors duration-300">
+              Terms of Service
+            </Link>
+            <Link to="/cookies" className="hover:text-blue-400 transition-colors duration-300">
+              Cookies
+            </Link>
+          </div>
+
+          {/* Scroll to Top Button */}
+          <motion.button
+            onClick={scrollToTop}
+            className="w-12 h-12 bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl flex items-center justify-center text-white shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            aria-label="Scroll to top"
+          >
+            <FaArrowUp />
+          </motion.button>
+        </motion.div>
       </div>
-    </footer>
+    </motion.footer>
   );
 };
 

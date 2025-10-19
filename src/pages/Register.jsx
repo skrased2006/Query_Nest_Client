@@ -1,143 +1,205 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import { motion } from "framer-motion";
 import { Link, useLocation, useNavigate } from "react-router";
-import { useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
 import Swal from "sweetalert2";
+import { FaGoogle, FaUser, FaEnvelope, FaLock, FaEye, FaEyeSlash } from "react-icons/fa";
 
 const Register = () => {
-  const {createUser,signItWithGoogle}=useContext(AuthContext);
+  const { createUser, signItWithGoogle } = useContext(AuthContext);
+  const location = useLocation();
+  const navigate = useNavigate();
+  const from = location.state || '/';
+  const [showPassword, setShowPassword] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
-  const location=useLocation()
-  const navigate=useNavigate();
-  const from=location.state ||'/';
-
-
-  const handleRegister=(e)=>{
+  const handleRegister = async (e) => {
     e.preventDefault();
-    const form=e.target;
-    const formData=new FormData(form);
-    const {email,password,...res}=Object.fromEntries(formData.entries());
-   createUser(email,password)
-   .then(res=>{
-    Swal.fire({
-  position: "top-end",
-  icon: "success",
-  title: "Your account has been created successfully",
-  showConfirmButton: false,
-  timer: 1500
-});
-    navigate(form)
-   })
+    setIsLoading(true);
 
+    const form = e.target;
+    const formData = new FormData(form);
+    const { email, password, name } = Object.fromEntries(formData.entries());
 
-
-  
-  }
-
-  const handleGoogleLogin=()=>{
-    signItWithGoogle()
-     .then((res) => {
-         Swal.fire({
-          title: 'Google Sign-in Success!',
-          imageUrl: 'https://cdn.shopify.com/s/files/1/0275/6457/2777/articles/050eef32fe16075ac9a3310a1d310593.jpg?v=1652231425',
-          imageWidth: 400,
-          imageHeight: 200,
-          imageAlt: 'Google Login Success',
-          confirmButtonColor: '#6366F1',
-          confirmButtonText: 'Nice!',
-        });
-        navigate(from)
-      })
-      .catch((err) => {
-        console.error(err);
+    try {
+      await createUser(email, password);
+      await Swal.fire({
+        position: "center",
+        icon: "success",
+        title: "Welcome to QueryNest!",
+        text: "Your account has been created successfully",
+        showConfirmButton: false,
+        timer: 2000,
+        background: '#1f2937',
+        color: 'white',
+        customClass: {
+          popup: 'rounded-2xl'
+        }
       });
+      navigate(from);
+    } catch (error) {
+      console.error('Registration error:', error);
+      Swal.fire({
+        icon: "error",
+        title: "Registration Failed",
+        text: "Please check your information and try again",
+        background: '#1f2937',
+        color: 'white',
+        confirmButtonColor: '#3b82f6',
+      });
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
-  }
-
-
+  const handleGoogleLogin = async () => {
+    setIsLoading(true);
+    try {
+      await signItWithGoogle();
+      await Swal.fire({
+        title: 'Welcome to QueryNest!',
+        text: 'Google registration successful',
+        icon: 'success',
+        confirmButtonColor: '#6366F1',
+        background: '#1f2937',
+        color: 'white',
+        customClass: {
+          popup: 'rounded-2xl'
+        }
+      });
+      navigate(from);
+    } catch (error) {
+      console.error('Google registration error:', error);
+      Swal.fire({
+        icon: "error",
+        title: "Google Registration Failed",
+        text: "Please try again later",
+        background: '#1f2937',
+        color: 'white',
+        confirmButtonColor: '#3b82f6',
+      });
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   return (
-    <div className="min-h-screen bg-[#f0f4ff] flex items-center justify-center p-4">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 flex items-center justify-center p-4">
       <motion.div
-        initial={{ opacity: 0, x: -100 }}
-        animate={{ opacity: 1, x: 0 }}
-        exit={{ opacity: 0, x: 100 }}
-        transition={{ duration: 0.5 }}
-        className="flex flex-col lg:flex-row bg-white rounded-xl shadow-xl overflow-hidden max-w-5xl w-full"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="bg-white rounded-2xl shadow-xl max-w-md w-full border border-gray-200"
       >
-        {/* Left - Image Section */}
-        <div className="w-full lg:w-1/2 hidden lg:block">
-          <img
-            src="https://i.ibb.co/9kD2n4dv/b16dd7d9-bf71-44f6-b634-36db7559b7ec.jpg"
-            alt="Register Visual"
-            className="w-full h-full object-cover"
-          />
-        </div>
-
-        {/* Right - Form Section */}
-        <div className="w-full lg:w-1/2 p-8">
-          {/* Logo + Name */}
-          <div className="flex items-center gap-3 mb-6">
-            <img
-              src="https://i.ibb.co/HDTgyWMD/23e4f9af-77f8-4d78-bbd2-57abfbc2d183.jpg"
-              alt="QueryNest Logo"
-              className="w-10 h-10 rounded-xl"
-            />
-            <h2 className="text-2xl font-bold text-indigo-700">Create your account</h2>
+        <div className="p-8">
+          {/* Header */}
+          <div className="text-center mb-8">
+            <div className="flex items-center justify-center gap-3 mb-4">
+              <div className="w-12 h-12 bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl flex items-center justify-center">
+                <img
+                  src="https://i.ibb.co/HDTgyWMD/23e4f9af-77f8-4d78-bbd2-57abfbc2d183.jpg"
+                  alt="QueryNest Logo"
+                  className="w-8 h-8 rounded-lg"
+                />
+              </div>
+              <h1 className="text-2xl font-bold text-gray-900">Join QueryNest</h1>
+            </div>
+            <p className="text-gray-600">Create your account in seconds</p>
           </div>
 
-          
-
+          {/* Registration Form */}
           <form onSubmit={handleRegister} className="space-y-4">
-            <input
-              type="text"
-              name="name"
-              placeholder="Full Name"
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
-            />
-            <input
-              type="email"
-              name="email"
-              placeholder="Email"
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
-            />
-             <input
-              type="url"
-              name="profilePic"
-              placeholder="Photo URL"
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
-            />
-            <input
-              type="password"
-              name="password"
-              placeholder="Password"
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"
-            />
-            <button
+            <div className="relative">
+              <FaUser className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 text-sm" />
+              <input
+                type="text"
+                name="name"
+                placeholder="Full name"
+                required
+                className="w-full pl-10 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              />
+            </div>
+
+            <div className="relative">
+              <FaEnvelope className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 text-sm" />
+              <input
+                type="email"
+                name="email"
+                placeholder="Email address"
+                required
+                className="w-full pl-10 pr-4 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              />
+            </div>
+
+            <div className="relative">
+              <FaLock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 text-sm" />
+              <input
+                type={showPassword ? "text" : "password"}
+                name="password"
+                placeholder="Password"
+                required
+                className="w-full pl-10 pr-10 py-3 bg-gray-50 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              />
+              <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600"
+              >
+                {showPassword ? <FaEyeSlash /> : <FaEye />}
+              </button>
+            </div>
+
+            <motion.button
               type="submit"
-              className="w-full bg-indigo-600 text-white py-2 rounded-md hover:bg-indigo-700 transition"
+              disabled={isLoading}
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              className="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold py-3 px-6 rounded-lg hover:shadow-lg transition-all duration-300 disabled:opacity-50 flex items-center justify-center gap-2"
             >
-              Register
-            </button>
+              {isLoading ? (
+                <>
+                  <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                  <span>Creating Account...</span>
+                </>
+              ) : (
+                <>
+                  <FaUser className="text-sm" />
+                  <span>Create Account</span>
+                </>
+              )}
+            </motion.button>
           </form>
 
-          <div className="text-center text-sm text-gray-600 mt-4">
-            Already have an account?{" "}
-            <Link to="/login" className="text-indigo-600 font-semibold hover:underline">
-              Login
-            </Link>
+          {/* Divider */}
+          <div className="flex items-center my-6">
+            <div className="flex-1 border-t border-gray-300"></div>
+            <span className="px-4 text-gray-500 text-sm">Or</span>
+            <div className="flex-1 border-t border-gray-300"></div>
           </div>
 
-          <div className="mt-6 text-center">
-            <button onClick={handleGoogleLogin} className="w-full py-2 border border-gray-300 rounded-md hover:bg-gray-50 flex items-center justify-center gap-2 text-gray-700">
-              <img
-                src="https://www.svgrepo.com/show/475656/google-color.svg"
-                alt="Google"
-                className="w-5 h-5"
-              />
-              Sign up with Google
-            </button>
+          {/* Google Sign Up */}
+          <motion.button
+            onClick={handleGoogleLogin}
+            disabled={isLoading}
+            whileHover={{ scale: 1.02 }}
+            whileTap={{ scale: 0.98 }}
+            className="w-full bg-white text-gray-700 font-medium py-3 px-6 rounded-lg border border-gray-300 hover:border-gray-400 shadow-sm hover:shadow-md transition-all duration-300 disabled:opacity-50 flex items-center justify-center gap-3"
+          >
+            <FaGoogle className="text-red-500" />
+            <span>Continue with Google</span>
+          </motion.button>
+
+          {/* Login Link */}
+          <div className="text-center mt-6">
+            <p className="text-gray-600 text-sm">
+              Already have an account?{" "}
+              <Link 
+                to="/login" 
+                state={from}
+                className="text-blue-600 font-semibold hover:text-blue-700"
+              >
+                Sign in
+              </Link>
+            </p>
           </div>
         </div>
       </motion.div>
